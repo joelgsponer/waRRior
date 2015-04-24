@@ -33,7 +33,7 @@ for(f in functions.to.be.laoded.on.startup){
     cat("\t*"function.id, "\n")
     },
     error = function(e, f_ = f){
-     print(sprintf("Error loading %s", f_))
+     cat(sprintf("\nwaRRior: ERROR loading %s !!!!!!!\n", f_))
      print(e)
      })
 }
