@@ -1,6 +1,8 @@
 cat("** waRRior v0.1 is being loaded **\n\n")
 
 functions.to.be.laoded.on.startup <- list(
+  #Libraries
+  "https://raw.githubusercontent.com/joelgsponer/waRRior/master/libraries/waRRior.libraries.startup.R"
   #General
    "https://raw.githubusercontent.com/joelgsponer/waRRior/master/refresh.R"
   #Github
