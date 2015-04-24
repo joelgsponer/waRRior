@@ -4,7 +4,7 @@ cat("
 \n**********************************
 \n")
 
-functions.to.be.laoded.on.startup <- list(
+files.to.be.laoded.on.startup <- list(
   #Libraries
   "https://raw.githubusercontent.com/joelgsponer/waRRior/master/libraries/waRRior.libraries.startup.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/libraries/waRRior.libraries.checkPkg.R"
@@ -28,8 +28,8 @@ source_https <- function(url, ...) {
   })
 }
 
-cat("Loading functions:\n")
-for(f in functions.to.be.laoded.on.startup){
+cat("Loading files:\n")
+for(f in files.to.be.laoded.on.startup){
   tryCatch({
     source_https(f)
     function.id <- unlist(strsplit(f,"/"))
