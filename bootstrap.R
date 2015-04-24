@@ -24,13 +24,13 @@ source_https <- function(url, ...) {
   })
 }
 
+cat("Loading functions:\n")
 for(f in functions.to.be.laoded.on.startup){
-  cat("Loading functions:\n")
   tryCatch({
     source_https(f)
     function.id <- unlist(strsplit(f,"/"))
     function.id <- function.id[length(function.id)]
-    cat(function.id, "\n")
+    cat("\t*"function.id, "\n")
     },
     error = function(e, f_ = f){
      print(sprintf("Error loading %s", f_))
