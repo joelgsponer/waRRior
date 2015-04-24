@@ -1,4 +1,4 @@
-waRRior.refresh <- function(
+waRRior.refresh <- function(){
     url <- "https://raw.githubusercontent.com/joelgsponer/waRRior/master/bootstrap.R"
     require(RCurl)
  
@@ -6,4 +6,4 @@ waRRior.refresh <- function(
     sapply(c(url, ...), function(u) {
       eval(parse(text = getURL(u, followlocation = TRUE, cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))), envir = .GlobalEnv)
     })
-)
+}
