@@ -3,7 +3,7 @@ github.read.data <- function(
   ,do.dplyr =T #Return result in dplyr's tbl_df
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
   ,function.id = "github.read.data" #Use this to identfy the function in error (or success messages if applicable) messages.
-  ,verbose = F #Turn messages on and of
+  ,verbose = F #Turn messages on and off
   ,...){
   tryCatch({
      
@@ -20,7 +20,7 @@ github.read.data <- function(
     response <- y
     
     #Success message
-    if(verbose) cat('waRRior: Sucssfully loaded data form:',url, "\n")
+    if(verbose) cat('waRRior: Sucssfully loaded data form:',url,'with',function.id, "\n")
     
     #Return respond
     return(response)
