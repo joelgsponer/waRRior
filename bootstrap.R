@@ -4,7 +4,7 @@ functions.to.be.laoded.on.startup <- list(
   #Libraries
   "https://raw.githubusercontent.com/joelgsponer/waRRior/master/libraries/waRRior.libraries.startup.R"
   #General
-   "https://raw.githubusercontent.com/joelgsponer/waRRior/master/refresh.R"
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/refresh.R"
   #Github
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/data/waRRior.github.read.data.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/code/waRRior.github.read.code.R"
