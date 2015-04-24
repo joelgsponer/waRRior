@@ -21,7 +21,7 @@ source_https <- function(url, ...) {
 }
 
 for(f in functions.to.be.laoded.on.startup){
-  cat("Loading functions:\n"
+  cat("Loading functions:\n")
   tryCatch({
     source_https(f)
     function.id <- unlist(strsplit(f,"/"))
