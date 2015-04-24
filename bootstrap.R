@@ -1,4 +1,8 @@
-cat("** waRRior v0.1 is being loaded **\n\n")
+cat("
+\n**********************************
+\n** waRRior v0.1 is being loaded **
+\n**********************************
+\n")
 
 functions.to.be.laoded.on.startup <- list(
   #Libraries
