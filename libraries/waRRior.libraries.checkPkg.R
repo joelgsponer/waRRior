@@ -3,5 +3,5 @@ waRRior.libraries.checkPkg <- function(pkg){
     {
    cat("#!",pkg,"not found - trying to install")
    install.packages(pkg, repos="http://cran.us.r-project.org")
-  }else {cat("#!",pkg,"library already installed\n")}
+  }else {cat("\t*",pkg,"library already installed\n")}
 }
