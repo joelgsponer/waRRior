@@ -1,9 +1,3 @@
 waRRior.refresh <- function(){
-    url <- "https://raw.githubusercontent.com/joelgsponer/waRRior/master/bootstrap.R"
-    require(RCurl)
- 
-    # parse and evaluate each .R script
-    sapply(c(url, ...), function(u) {
-      eval(parse(text = getURL(u, followlocation = TRUE, cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))), envir = .GlobalEnv)
-    })
+  waRRior.github.read.code("https://raw.githubusercontent.com/joelgsponer/waRRior/master/bootstrap.R")
 }
