@@ -10,11 +10,11 @@ source_https <- function(url, ...) {
   })
 }
 
-sink("~/.waRRior-log")
+
 source_https(
    "https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/data/waRRior.github.read.data.R"
-  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/code/waRRior.github.red.code.R"
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/code/waRRior.github.read.code.R"
 )
-sink()
+
 
 cat(" OK!\n")
