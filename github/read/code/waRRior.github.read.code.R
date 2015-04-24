@@ -20,7 +20,7 @@ github.read.code <- function(
     response <- NULL
     
     #Success message
-    if(verbose) cat('waRRior:',function.id,'success)
+    if(verbose) cat('waRRior:',function.id,'success\n')
     
     #Return respond
     return(response)
