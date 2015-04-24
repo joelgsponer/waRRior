@@ -1,5 +1,13 @@
 cat("** waRRior v0.1 is being loaded **")
 
+functions.to.be.laoded.on.startup <- list(
+  #General
+   "https://raw.githubusercontent.com/joelgsponer/waRRior/master/refresh.R"
+  #Github
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/data/waRRior.github.read.data.R"
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/code/waRRior.github.read.code.R"
+)
+
 source_https <- function(url, ...) {
   # load package
   require(RCurl)
@@ -10,14 +18,13 @@ source_https <- function(url, ...) {
   })
 }
 
-
-source_https(
-  #General
-   "https://raw.githubusercontent.com/joelgsponer/waRRior/master/refresh.R"
-  #Github
-  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/data/waRRior.github.read.data.R"
-  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/code/waRRior.github.read.code.R"
-)
+for(f in functions.to.be.laoded.on.startup){
+  tryCatch( source_https(f),
+    error = function(e, f_ = f){
+     print(sprintf("Error loading %s", f_))
+     print(e)
+     })
+}
 
 
 cat(" OK!\n")
