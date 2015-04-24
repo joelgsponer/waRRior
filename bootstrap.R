@@ -1,3 +1,5 @@
+cat("** waRRior v0.1 is being loaded **")
+
 source_https <- function(url, ...) {
   # load package
   require(RCurl)
@@ -15,3 +17,4 @@ source_https(
 )
 sink()
 
+cat(" OK!\n")
