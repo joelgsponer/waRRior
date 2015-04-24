@@ -34,7 +34,7 @@ for(f in functions.to.be.laoded.on.startup){
     source_https(f)
     function.id <- unlist(strsplit(f,"/"))
     function.id <- function.id[length(function.id)]
-    cat("\t*"function.id, "\n")
+    cat("\t*",function.id, "\n")
     },
     error = function(e, f_ = f){
      cat(sprintf("\nwaRRior: ERROR loading %s !!!!!!!\n", f_))
