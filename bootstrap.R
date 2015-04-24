@@ -3,8 +3,8 @@ cat("** waRRior v0.1 is being loaded **\n\n")
 functions.to.be.laoded.on.startup <- list(
   #Libraries
   "https://raw.githubusercontent.com/joelgsponer/waRRior/master/libraries/waRRior.libraries.startup.R"
-  "https://raw.githubusercontent.com/joelgsponer/waRRior/master/libraries/waRRior.libraries.checkPkg.R"
-  "https://raw.githubusercontent.com/joelgsponer/waRRior/master/libraries/waRRior.libraries.install.R" #depends on checkPkg
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/libraries/waRRior.libraries.checkPkg.R"
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/libraries/waRRior.libraries.install.R" #depends on checkPkg
   #General
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/refresh.R"
   #Github
