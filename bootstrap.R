@@ -12,7 +12,10 @@ source_https <- function(url, ...) {
 
 
 source_https(
-   "https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/data/waRRior.github.read.data.R"
+  #General
+   "https://raw.githubusercontent.com/joelgsponer/waRRior/master/refresh.R"
+  #Github
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/data/waRRior.github.read.data.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/code/waRRior.github.read.code.R"
 )
 
