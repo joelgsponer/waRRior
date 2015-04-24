@@ -1,4 +1,4 @@
-github.read.data <- function(
+waRRior.github.read.data <- function(
    url
   ,do.dplyr =T #Return result in dplyr's tbl_df
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
