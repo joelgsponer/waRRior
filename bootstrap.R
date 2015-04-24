@@ -1,4 +1,4 @@
-cat("** waRRior v0.1 is being loaded **")
+print("** waRRior v0.1 is being loaded **")
 
 functions.to.be.laoded.on.startup <- list(
   #General
@@ -19,7 +19,12 @@ source_https <- function(url, ...) {
 }
 
 for(f in functions.to.be.laoded.on.startup){
-  tryCatch( source_https(f),
+  tryCatch({
+    source_https(f)
+    function.id <- unlist(strsplit(f,"/"))
+    function.id <- function.id[length(function.id)]
+    print(function.id)
+    },
     error = function(e, f_ = f){
      print(sprintf("Error loading %s", f_))
      print(e)
@@ -27,4 +32,4 @@ for(f in functions.to.be.laoded.on.startup){
 }
 
 
-cat(" OK!\n")
+print(" OK!")
