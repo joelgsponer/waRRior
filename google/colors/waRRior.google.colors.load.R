@@ -1,5 +1,5 @@
 waRRior.google.colors.load <- function(
-  url = "https://gist.githubusercontent.com/joelgsponer/4c131e60302b4a6d2264/raw/936a0349c46ba123f22f9eba1a416e755473638d/googlecolors.json"
+  url = "https://raw.githubusercontent.com/joelgsponer/waRRior/master/google/colors/waRRior.google.colors.json"
 ){
   cat("waRRior: Loading google.colors.\n")
   google.colors <- fromJSON(getURL(tmp))
