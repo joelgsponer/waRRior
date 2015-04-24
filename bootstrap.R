@@ -10,6 +10,8 @@ functions.to.be.laoded.on.startup <- list(
   #Github
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/data/waRRior.github.read.data.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/code/waRRior.github.read.code.R"
+  #Google
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/google/colors/waRRior.google.colors.load.R"
 )
 
 source_https <- function(url, ...) {
