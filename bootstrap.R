@@ -17,7 +17,12 @@ files.to.be.loaded.on.startup <- list(
   #Google
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/google/colors/waRRior.google.colors.load.R"
   #Statistics
+  ##General
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/statistics/general/warrior.statistics.general.ptostars.R"
+  ##Views
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/statistics/views/waRRior.statistics.views.barplot.R"
+  ##Survival
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/statistics/survival/waRRior.statistics.survival.cutoff.R"
 )
 
 source_https <- function(url, ...) {
