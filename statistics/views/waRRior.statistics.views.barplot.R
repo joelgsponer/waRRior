@@ -1,6 +1,5 @@
 waRRior.statistics.views.barplot <- function(
-   x
-  ,y
+   tab
   ,threshold = 1
   ,color.fill = NA
   ,color.text = "red"
@@ -9,7 +8,6 @@ waRRior.statistics.views.barplot <- function(
   ,digits = 1
   ,legendText = NA, ...
 ){
-   tab <- table(x,y)
    par(mar = c(4,4,4,10), lwd = 2)
 	 bar <- barplot(tab
      ,ylim = ylim
