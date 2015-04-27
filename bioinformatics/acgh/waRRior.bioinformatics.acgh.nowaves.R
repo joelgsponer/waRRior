@@ -1,5 +1,7 @@
 waRRior.bioinformatics.acgh.nowaves <- function(
    input
+  ,calibration.file = NA
+  ,bandwidth = 1
   ,do.dplyr =T #Return result in dplyr's tbl_df
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
   ,function.id = "waRRior.bioinformatics.acgh.nowaves" #Use this to identfy the function in error (or success messages if applicable) messages.
@@ -10,21 +12,24 @@ waRRior.bioinformatics.acgh.nowaves <- function(
     #Actual Function code
     require(NoWaves)
 	
-	  CGHTumor <- data.frame(input$probe, input$chr, input$start, input$log2ratio)
+	CGHTumor <- data.frame(input$probe, input$chr, input$start, input$log2ratio)
   	names(CGHTumor) <- c("Name", "Chr", "Position", "M.observed")
 	
-	  if (is.na(calibrationFile) == TRUE){
-	  	calibrationFile = paste(sourceFolder,"/Annotation/Agilent180KCalibration.Rdata", sep = "")
-  	} 
+
 	
   	if(exists("NormalSmooth") == FALSE){
-	  	load(calibrationFile)
-	  	NormalSmooth <- SmoothNormals(CGHNormal, bandwidth = bandwidth)
-		  assign("NormalSmooth", NormalSmooth, envir = globalenv())
+	if (is.na(calibration.file)){
+	  if(verbose)cat("waRRior: trying to download calibration file, as none was specified.\n")
+	    calibration.file = getURL('http://raw.githubusercontent.com/joelgsponer/annotate-it/master/bioinformatics/cancer/acgh/Agilent180KCalibration.Rdata')
+	}
+	if(verbose)cat("waRRior: calibration file = ",calibration.file, "\n")
+        load(calibration.file)
+	waRRior.bioinfomatics.acgh.normalsmooth <- SmoothNormals(CGHNormal, bandwidth = bandwidth)
+	assign("waRRior.bioinfomatics.acgh.normalsmooth", waRRior.bioinfomatics.acgh.normalsmooth, envir = globalenv())
   	}
-  	cormat <- CorTumNorm(CGHTumor, NormalSmooth)
-	  if(verbose)cat("waRRior: correlation matrix");print(cormat)
-  	correctedInput <- CorrectTumors(CGHTumor, NormalSmooth)
+  	cormat <- CorTumNorm(CGHTumor, waRRior.bioinfomatics.acgh.normalsmooth)
+	if(verbose)cat("waRRior: correlation matrix");print(cormat)
+  	correctedInput <- CorrectTumors(CGHTumor, waRRior.bioinfomatics.acgh.normalsmooth)
   	
     #define response
     response <- correctedInput
