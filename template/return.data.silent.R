@@ -14,7 +14,7 @@ $name$ <- function(
     response <- $$$
     
     #Success message
-    if(verbose) cat('waRRior:'.function.id,'success)
+    if(verbose) cat('waRRior:',function.id,'success')
     
     #Return respond
     return(response)
