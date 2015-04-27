@@ -9,10 +9,12 @@ waRRior.statistics.views.barplot <- function(
   ,color.border = "black"
   ,ylim = NULL
   ,digits = 1
-  ,legendText = NA, ...
+  ,legend.text = NA, ...
 ){
   tab <- table(x,y)
   if(is.percent)tab = prop.table(tab, margin) * 100
+  if(is.na(legend.text)) legend.text = columnames(tab)
+  
   par(mar = c(4,4,4,10), lwd = 2)
   bar <- barplot(tab
      ,ylim = ylim
@@ -38,7 +40,7 @@ waRRior.statistics.views.barplot <- function(
 	         
 	}
 	par(xpd = T) 
-	legend(bar[length(bar)] + 0.8, max(tab, na.rm = T)/100*25, legend = legendText, cex = 0.9, fill = color.fill)
+	legend(bar[length(bar)] + 0.8, max(tab, na.rm = T)/100*25, legend = legend.text, cex = 0.9, fill = color.fill)
 	par(xpd = F)
     return(bar)
 }
