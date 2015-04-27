@@ -10,7 +10,9 @@ waRRior.statistics.views.barplot <- function(
   ,is.statistical.test = T
   ,ylim = NULL
   ,digits = 1
-  ,legend.text = NA, ...
+  ,legend.text = NA
+  ,verbose = F
+  ,...
 ){
   tab <- table(x,y)
   tab_n <- tab
@@ -31,9 +33,9 @@ waRRior.statistics.views.barplot <- function(
 	  for(j in seq(1, length(csum) - 1)){
 		    mids <- c(mids, (csum[j+1] + csum[j]) / 2) 
 	     }
-	     print(mids)
+	     if(verbose)print(mids)
 	     if(is.null(ylim) == F) mids[1] <-  (ylim[1] + csum[2]) / 2
-	     print(mids)
+	     if(verbose)print(mids)
 	     text(bar[i], mids, ifelse(tab[,i] > threshold, paste(round(tab[,i],digits),"%"), NA), cex = 1.5, font = 2, col = color.text)  
      }
     if(is.null(ylim) == F){
