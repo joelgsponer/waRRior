@@ -15,7 +15,9 @@ files.to.be.loaded.on.startup <- list(
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/data/waRRior.github.read.data.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/code/waRRior.github.read.code.R"
   #Google
+  ##Colors
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/google/colors/waRRior.google.colors.load.R"
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/google/colors/waRRior.google.colors.accents.R"
   #Statistics
   ##General
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/statistics/general/warrior.statistics.general.ptostars.R"
