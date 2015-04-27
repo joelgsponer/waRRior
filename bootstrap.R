@@ -16,6 +16,8 @@ files.to.be.loaded.on.startup <- list(
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/github/read/code/waRRior.github.read.code.R"
   #Google
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/google/colors/waRRior.google.colors.load.R"
+  #Statistics
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/statistics/views/waRRior.statistics.views.barplot.R"
 )
 
 source_https <- function(url, ...) {
