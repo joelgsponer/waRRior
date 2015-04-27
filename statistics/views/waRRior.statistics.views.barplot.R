@@ -1,5 +1,8 @@
 waRRior.statistics.views.barplot <- function(
-   tab
+   x
+  ,y
+  ,margin = 1
+  ,is.percent = T
   ,threshold = 1
   ,color.fill = NA
   ,color.text = "red"
@@ -8,8 +11,10 @@ waRRior.statistics.views.barplot <- function(
   ,digits = 1
   ,legendText = NA, ...
 ){
-   par(mar = c(4,4,4,10), lwd = 2)
-	 bar <- barplot(tab
+  tab <- table(x,y)
+  if(is.percent)tab = prop.table(tab, margin) * 100
+  par(mar = c(4,4,4,10), lwd = 2)
+  bar <- barplot(tab
      ,ylim = ylim
      ,col = color.fill
      ,ylab = "%"
@@ -36,5 +41,4 @@ waRRior.statistics.views.barplot <- function(
 	legend(bar[length(bar)] + 0.8, max(tab, na.rm = T)/100*25, legend = legendText, cex = 0.9, fill = color.fill)
 	par(xpd = F)
     return(bar)
-
 }
