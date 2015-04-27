@@ -7,11 +7,13 @@ waRRior.statistics.views.barplot <- function(
   ,color.fill = NA
   ,color.text = "red"
   ,color.border = "black"
+  ,is.statistical.test = T
   ,ylim = NULL
   ,digits = 1
   ,legend.text = NA, ...
 ){
   tab <- table(x,y)
+  tab_n <- tab
   if(is.percent)tab = prop.table(tab, margin) * 100
   if(is.na(legend.text)) legend.text = rownames(tab)
   
@@ -42,5 +44,6 @@ waRRior.statistics.views.barplot <- function(
 	par(xpd = T) 
 	legend(bar[length(bar)] + 0.8, max(tab, na.rm = T)/100*25, legend = legend.text, cex = 0.9, fill = color.fill)
 	par(xpd = F)
+    if(is.statistical.test){print(tab_n); print(fisher.test(tab_n))}
     return(bar)
 }
