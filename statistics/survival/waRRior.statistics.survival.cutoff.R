@@ -27,14 +27,14 @@ waRRior.statistics.survival.cutoff <- function(
 	  return(cutoffs)
     }
 
-	if(verbose)cat("waRRior: calculating optimal survival cutoff. v1")
-	if(verbose)cat("Stratification values:\n")
+	if(verbose)cat("waRRior: calculating optimal survival cutoff.\n")
+	if(verbose)cat("waRRior: stratification values =\n")
 	if(verbose)print(summary(strataValue))
 
 	require(survival)
 
 	if(is.na(step)) step <- max(strataValue, na.rm = T) / 100
-    if(verbose)cat('Step:',step,"\n")
+    if(verbose)cat('waRRior: step = ',step,"\n")
 
 	if(is.na(cutoffs)) cutoffs <- privCuts(strataValue)
 	
@@ -128,8 +128,6 @@ waRRior.statistics.survival.cutoff <- function(
 	 abline(v = cut, lty = 2, col = "red")
 	 if(LogRankScore == T){
      			plot(cuts,scores, type = 'l', lwd = 2, col = "magenta4", xlab = 'Cutoff', ylab = 'Logrank Score')
-     			print('Scores:')
-     			print(scores)
      			abline(v = cut, lty = 2, col = "red")
      }
 
@@ -145,7 +143,7 @@ waRRior.statistics.survival.cutoff <- function(
 	 plot(Fit1, col = colorSet, lwd = 3, main = main)
 	 legend(max(time, na.rm = T)-(max(time, na.rm = T)/100*25),0.2, fill = colorSet, legend = c(paste("Low:",n1[pvalues == min(pvalues)][1]),paste("High:",n2[pvalues == min(pvalues)][1])), border = borderColor, box.col = box.col)
 	 test <- survdiff(Surv1 ~ strat)
-	 if(verbose)print(test)
+	 if(verbose)cat("waRRior: logrank test");print(test)
 	 pVal <- format(1 - pchisq(test$chisq, length(test$n) - 1),5)
 	 pVal <- paste(round(as.numeric(pVal), decimalPoints),sep = " ")
      text(max(time, na.rm = T)/100*40,0,paste("p-value = ", pVal," Logrank Score = ",round(max(scores,na.rm = T)[1],2)))
