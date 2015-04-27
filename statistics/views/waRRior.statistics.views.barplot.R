@@ -13,7 +13,7 @@ waRRior.statistics.views.barplot <- function(
 ){
   tab <- table(x,y)
   if(is.percent)tab = prop.table(tab, margin) * 100
-  if(is.na(legend.text)) legend.text = colnames(tab)
+  if(is.na(legend.text)) legend.text = rownames(tab)
   
   par(mar = c(4,4,4,10), lwd = 2)
   bar <- barplot(tab
