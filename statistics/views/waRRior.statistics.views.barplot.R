@@ -9,7 +9,7 @@ waRRior.statistics.views.barplot <- function(
   ,digits = 1
   ,legendText = NA, ...
 ){
-   tab <- tab(x,y)
+   tab <- table(x,y)
    par(mar = c(4,4,4,10), lwd = 2)
 	 bar <- barplot(tab
      ,ylim = ylim
