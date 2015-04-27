@@ -25,6 +25,9 @@ files.to.be.loaded.on.startup <- list(
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/statistics/views/waRRior.statistics.views.barplot.R"
   ##Survival
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/statistics/survival/waRRior.statistics.survival.cutoff.R"
+  #Bioinformatics
+  ##aCGH
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/bioinformatics/acgh/waRRior.bioinformatics.acgh.nowaves.R"
 )
 
 source_https <- function(url, ...) {
