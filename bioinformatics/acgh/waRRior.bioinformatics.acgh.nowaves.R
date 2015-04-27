@@ -30,7 +30,7 @@ waRRior.bioinformatics.acgh.nowaves <- function(
     response <- correctedInput
     
     #Success message
-    if(verbose) cat('waRRior:'.function.id,'success)
+    if(verbose) cat('waRRior:',function.id,'success)
     
     #Return respond
     return(response)
