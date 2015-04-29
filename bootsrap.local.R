@@ -10,6 +10,6 @@ waRRior.bootstrap.local <- function(path="waRRior/", verbose = T){
   rm(ls()[grep("waRRior", ls())])
   
   if(verbose)cat("waRRior: loading local files in path",path,".\n")
-  file.sources = list.files(pattern="waRRior/*.R")
+  file.sources = list.files(pattern=paste(path,"*.R",sep = "")
   sapply(file.sources,source,.GlobalEnv)
 }
