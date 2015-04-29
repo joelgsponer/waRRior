@@ -48,8 +48,11 @@ waRRior.statistics.views.barplot <- function(
 	par(xpd = F)
     if(is.statistical.test){
       print(tab_n)
-      if(dim(tab_n)[1]==2 & dim(tab_n)[2]==2) fisher.test(tab_n)
-      else chisq.test(tab_n)
+      if(dim(tab_n)[1]==2 & dim(tab_n)[2]==2){
+        print(fisher.test(tab_n))
+      }else{
+        print(chisq.test(tab_n))
+      }
     }
     return(bar)
 }
