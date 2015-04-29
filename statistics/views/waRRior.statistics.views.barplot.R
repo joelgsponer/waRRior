@@ -46,6 +46,10 @@ waRRior.statistics.views.barplot <- function(
 	par(xpd = T) 
 	legend(bar[length(bar)] + 0.8, max(tab, na.rm = T)/100*25, legend = legend.text, cex = 0.9, fill = color.fill)
 	par(xpd = F)
-    if(is.statistical.test){print(tab_n); print(fisher.test(tab_n))}
+    if(is.statistical.test){
+      print(tab_n)
+      if(dim(tab_n)[1]==2 & dim(tab_n)[2]==2) fisher.test(tab_n)
+      else chisq.test(tab_n)
+    }
     return(bar)
 }
