@@ -34,6 +34,8 @@ files.to.be.loaded.on.startup <- list(
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.verbose.R"
   #Plotting
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/plot/waRRior.plot.connect_points_with_bezier.R"
+  ,#Databases
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/databases/sqlite/waRRior.databases.sqlite.is_field_present.R"
 )
 
 source_https <- function(url, ...) {
