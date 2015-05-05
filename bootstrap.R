@@ -30,6 +30,7 @@ files.to.be.loaded.on.startup <- list(
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/bioinformatics/acgh/waRRior.bioinformatics.acgh.nowaves.R"
   #Snippets
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.close_all_graphic_devices.R"
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.backup_file.R"
   #Plotting
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/plot/waRRior.plot.connect_points_with_bezier.R"
 )
