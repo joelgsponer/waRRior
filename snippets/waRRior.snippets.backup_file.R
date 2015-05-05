@@ -50,6 +50,7 @@ waRRior.snippets.backup_file <- function(
     #define response
     response <- list(
        message <- "Backup created"
+      ,timestamp <- Sys.time()
       ,error = 0
       ,e = NA
     )
@@ -66,6 +67,7 @@ waRRior.snippets.backup_file <- function(
       if(silent){
        return(list(
           message = sprintf("Error during function: %s", function.id)
+         ,timestamp = Sys.time()
          ,error = 1
          ,e = e
        ))
