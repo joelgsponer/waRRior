@@ -1,9 +1,9 @@
 $name$ <- function(
-   url
-  ,do.dplyr =T #Return result in dplyr's tbl_df
+   x
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
   ,function.id = $id$ #Use this to identfy the function in error (or success messages if applicable) messages.
   ,verbose = F #Turn messages on and off
+  ,debug = F #Turn debug messages on and off
   ,...){
   tryCatch({
      
@@ -11,7 +11,12 @@ $name$ <- function(
     $$$
     
     #define response
-    response <- $$$
+    response <- list(
+       result <- $$$
+      ,message <- paste(function.id, 'success')
+      ,error = 0
+      ,e = NULL
+    )
     
     #Success message
     waRRior.snippet.verbose(paste(function.id,'success'))
