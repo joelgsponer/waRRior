@@ -13,6 +13,7 @@ waRRior.snippets.backup_file <- function(
   tryCatch({
      
     #Actual Function code
+    
     if(verbose) cat("waRRior: backing up file",file,"to",destination, "\n")
     files.in.backup.location <- sort(list.files(destination, pattern=identifier))
     if(verbose)cat("waRRior: files in backup location matching the identifier\n")
@@ -47,7 +48,11 @@ waRRior.snippets.backup_file <- function(
     if(!(res.file.copy))stop("Error while copying files")
     
     #define response
-    response <- T
+    response <- list(
+       message <- "Backup created"
+      ,error = 0
+      ,e = NA
+    )
     
     #Success message
     if(verbose) cat('waRRior:',function.id,'success\n')
