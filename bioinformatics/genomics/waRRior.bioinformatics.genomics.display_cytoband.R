@@ -6,7 +6,7 @@ waRRior.bioinformatics.genomics.display_cytoband <- function(
   ,colo.border = "black"
   ,y.ubound = 1
   ,y.lbound = -1
-  ,debug = T
+  ,debug = F
 ){
   df <- waRRior.github.read.data("https://raw.githubusercontent.com/joelgsponer/annotate-it/master/bioinformatics/genomics/cytobandshg19.txt",do.dplyr = F,  sep = " ")
   if(debug)print(df)
