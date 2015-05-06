@@ -22,9 +22,9 @@ waRRior.bioinformatics.flowcytometry.color_cell_cycle <- function(
     require(flowviz)
     
     if(length(colors.peaks) != nr.peaks.to.color){
-      if(length(colors.peaks == 1){
+      if(length(colors.peaks) == 1){
         colors.peaks <- rep(colors.peaks, nr.peaks.to.color)
-        waRRior.snippets.verbose('expanding colors.'
+        waRRior.snippets.verbose('expanding colors.')
       }else{
         stop('wrong number of colors.peaks. Has to be either 1 or equal to nr.peaks.to.color')
       }
@@ -68,12 +68,12 @@ waRRior.bioinformatics.flowcytometry.color_cell_cycle <- function(
   axis(2,seq(0, 1000000, ystep.axis), las = 2)
   
   dev.off()
-  waRRior.snippets.verbose(paste('image saved to', destination')
+  waRRior.snippets.verbose(paste('image saved to', destination))
     
     #define response
     response <- list(
-       result <- h
-      ,message <- paste(function.id, 'success')
+       result = h
+      ,message = paste(function.id, 'success')
       ,error = 0
       ,e = NULL
     )
