@@ -31,5 +31,6 @@ waRRior.bioinformatics.genomics.display_cytoband <- function(
     ,df$end
     ,c(y.ubound)
     ,col = color.centromere
-    ,border = color.centromere)
+    ,border = color.centromere
+   )
 }
