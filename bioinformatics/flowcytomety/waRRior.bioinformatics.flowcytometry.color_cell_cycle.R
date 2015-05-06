@@ -38,15 +38,15 @@
          for(i in colnames(x)) cat("\t*",i,"\n")
        }
        
-       h <- hist(x[,channel], xlab = NA, breaks=breaks, xlim = c(5000,35000), ylim =c(0,300), xaxt = "n", yaxt = "n", ylab = NA, main = NA)
-       waRRior.snippets.close_all_graphic_devices()
+       h <- hist(x[,channel], xlab = NA, breaks=breaks.histogram, xlim = c(5000,35000), ylim =c(0,300), xaxt = "n", yaxt = "n", ylab = NA, main = NA)
+
        
        c <- rep(color.histogram, length(h$breaks))
        for(i in seq(1,nr.peaks.to.color)){
          locator(2)
          c[h$breaks > 8383.482 & h$breaks < 11237.543] <- colors.peaks[i]
        }
-       
+      waRRior.snippets.close_all_graphic_devices() 
    
      #Final histogram
      png(file = destination,width = 3, height = 3, unit = "in", res = 600)
@@ -59,7 +59,7 @@
      h <- hist(
         x[,channel]
        ,xlab = NA
-       ,breaks=breaks
+       ,breaks=breaks.histogram
        ,xlim = c(5000,35000)
        ,ylim =c(0,300)
        ,xaxt = "n"
@@ -73,7 +73,7 @@
      axis(2,seq(0, 1000000, ystep.axis), las = 2)
      
      dev.off()
-     waRRior.snippets.verbose(paste('image saved to', destination))
+     waRRior.snippets.verbose(paste('image saved to', destination), verbose_ = verbose)
        
        #define response
        response <- list(
