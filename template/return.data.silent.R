@@ -19,7 +19,7 @@ $name$ <- function(
     )
     
     #Success message
-    waRRior.snippet.verbose(paste(function.id,'success'))
+    waRRior.snippets.verbose(paste(function.id,'success'))
     
     #Return respond
     return(response)
