@@ -44,7 +44,7 @@
        c <- rep(color.histogram, length(h$breaks))
        for(i in seq(1,nr.peaks.to.color)){
          l <- locator(2)
-         c[h$breaks > l[1] & h$breaks < l[2] <- colors.peaks[i]
+         c[h$breaks > l$x[1] & h$breaks < l$x[2]] <- colors.peaks[i]
        }
       waRRior.snippets.close_all_graphic_devices() 
    
@@ -54,6 +54,7 @@
         mar = c(5,5,2,2)
        ,bg = color.background
        ,col = color.lines
+       ,col.axis = color.lines
      )
      
      h <- hist(
@@ -69,8 +70,8 @@
        ,col = c
        ,border = c
      )
-     axis(1,seq(5000,100000000,xstep.axis), las = 2)
-     axis(2,seq(0, 1000000, ystep.axis), las = 2)
+     axis(1,seq(5000,100000000,xstep.axis), las = 2, col = color.lines)
+     axis(2,seq(0, 1000000, ystep.axis), las = 2, col = color.lines)
      
      dev.off()
      waRRior.snippets.verbose(paste('image saved to', destination), verbose_ = verbose)
