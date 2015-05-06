@@ -12,6 +12,7 @@
      ,ylim = c(0,300)
      ,xstep.axis = 10000
      ,ystep.axis = 50
+     ,image.format = "pdf"
      ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
      ,function.id = "waRRior.bioinformatics.flowcytometry.color_cell_cycle" #Use this to identfy the function in error (or success messages if applicable) messages.
      ,verbose = T #Turn messages on and off
@@ -51,7 +52,10 @@
       waRRior.snippets.close_all_graphic_devices() 
    
      #Final histogram
-     png(file = destination,width = 3, height = 3, unit = "in", res = 600)
+     switch(image.format,
+      png = png(file = destination,width = 3, height = 3, unit = "in", res = 600)
+     ,pdf = pdf(file = destination,width = 3, height = 3)
+     )
      par(
         mar = c(5,5,2,2)
        ,bg = color.background
