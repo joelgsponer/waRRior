@@ -43,8 +43,8 @@
        
        c <- rep(color.histogram, length(h$breaks))
        for(i in seq(1,nr.peaks.to.color)){
-         locator(2)
-         c[h$breaks > 8383.482 & h$breaks < 11237.543] <- colors.peaks[i]
+         l <- locator(2)
+         c[h$breaks > l[1] & h$breaks < l[2] <- colors.peaks[i]
        }
       waRRior.snippets.close_all_graphic_devices() 
    
@@ -84,7 +84,7 @@
        )
        
        #Success message
-       waRRior.snippets.verbose(paste(function.id,'success'))
+       waRRior.snippets.verbose(paste(function.id,'success'), verbose_ = verbose)
        
        #Return respond
        return(response)
