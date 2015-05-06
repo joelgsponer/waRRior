@@ -3,7 +3,7 @@ waRRior.bioinformatics.genomics.display_cytoband <- function(
   ,create.plot = T
   ,color.bands = "black"
   ,color.centromere = "red"
-  ,colo.border = "black"
+  ,color.border = "black"
   ,y.ubound = 1
   ,y.lbound = -1
   ,debug = F
