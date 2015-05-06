@@ -30,6 +30,8 @@ files.to.be.loaded.on.startup <- list(
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/bioinformatics/acgh/waRRior.bioinformatics.acgh.nowaves.R"
   ##Flowcytometry
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/bioinformatics/flowcytomety/waRRior.bioinformatics.flowcytometry.color_cell_cycle.R"
+  ##Genomics
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/bioinformatics/genomics/waRRior.bioinformatics.genomics.display_cytoband.R"
   #Snippets
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.close_all_graphic_devices.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.backup_file.R"
