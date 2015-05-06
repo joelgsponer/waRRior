@@ -12,7 +12,10 @@ waRRior.bioinformatics.genomics.display_cytoband <- function(
   if(debug)print(df)
   df <- df[as.numeric(as.character(df$chrnumeric)) == chr,]
   if(debug)print(df)
-  if(create.plot)plot(1,1, xlim = range(df[,c("start", "end")]), pch = NA, ylim = c(-5,5), ylab = NA, las = 2, yaxt = "n", xlab = NA)
+  if(create.plot){
+    plot(1,1, xlim = range(df[,c("start", "end")]), pch = NA, ylim = c(-5,5), ylab = NA, las = 2,xaxt = "n", yaxt = "n", xlab = NA)
+    axis(1, apply(df[,c("start", "end")], 1, mean), df$band, las = 2, cex.axis = 0.8)
+  }    
   color.bands <- sapply(df$stain, FUN = function(x){waRRior.snippets.make_color_transparent(color.bands, alpha = x)})
   if(debug)print(color.bands)
   rect(
