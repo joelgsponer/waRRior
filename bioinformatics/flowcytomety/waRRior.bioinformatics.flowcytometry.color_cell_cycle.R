@@ -8,8 +8,8 @@ waRRior.bioinformatics.flowcytometry.color_cell_cycle <- function(
   ,color.background = "#FFFFFFFF"
   ,color.lines = "#000000FF"
   ,breaks.histogram = 2000
-  ,xstep.axis = 
-  ,ystep.axis = 
+  ,xstep.axis = 10000
+  ,ystep.axis = 50
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
   ,function.id = "waRRior.bioinformatics.flowcytometry.color_cell_cycle" #Use this to identfy the function in error (or success messages if applicable) messages.
   ,verbose = T #Turn messages on and off
