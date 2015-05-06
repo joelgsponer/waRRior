@@ -8,6 +8,8 @@
      ,color.background = "#FFFFFFFF"
      ,color.lines = "#000000FF"
      ,breaks.histogram = 2000
+     ,xlim = c(5000,35000)
+     ,ylim = c(0,300)
      ,xstep.axis = 10000
      ,ystep.axis = 50
      ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
@@ -38,7 +40,7 @@
          for(i in colnames(x)) cat("\t*",i,"\n")
        }
        
-       h <- hist(x[,channel], xlab = NA, breaks=breaks.histogram, xlim = c(5000,35000), ylim =c(0,300), xaxt = "n", yaxt = "n", ylab = NA, main = NA)
+       h <- hist(x[,channel], xlab = NA, breaks=breaks.histogram, xlim = xlim, ylim = ylim)
 
        
        c <- rep(color.histogram, length(h$breaks))
@@ -61,8 +63,8 @@
         x[,channel]
        ,xlab = NA
        ,breaks=breaks.histogram
-       ,xlim = c(5000,35000)
-       ,ylim =c(0,300)
+       ,xlim = xlim
+       ,ylim = ylim
        ,xaxt = "n"
        ,yaxt = "n"
        ,ylab = NA
