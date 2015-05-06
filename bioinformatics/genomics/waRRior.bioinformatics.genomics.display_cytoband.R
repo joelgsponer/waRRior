@@ -21,7 +21,7 @@ waRRior.bioinformatics.genomics.display_cytoband <- function(
     ,df$end
     ,c(y.ubound)
     ,col = color.bands
-    ,border = color.bands
+    ,border = color.border
   )
   df <- df[df$g == "acen",]
   if(debug)print(df)
@@ -31,5 +31,5 @@ waRRior.bioinformatics.genomics.display_cytoband <- function(
     ,df$end
     ,c(y.ubound)
     ,col = color.centromere
-    ,border = NA)
+    ,border = color.centromere)
 }
