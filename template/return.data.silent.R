@@ -6,7 +6,7 @@ $name$ <- function(
   ,debug = F #Turn debug messages on and off
   ,...){
   tryCatch({
-     
+    t <- Sys.time() 
     #Actual Function code
     $$$
     
@@ -16,6 +16,7 @@ $name$ <- function(
       ,message <- paste(function.id, 'success')
       ,error = 0
       ,e = NULL
+      ,time.elapsed = as.numeric(difftime(Sys.time(), t), units = "secs")
     )
     
     #Success message
