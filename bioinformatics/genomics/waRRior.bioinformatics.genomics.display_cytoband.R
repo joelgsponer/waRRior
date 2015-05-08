@@ -37,6 +37,6 @@ waRRior.bioinformatics.genomics.display_cytoband <- function(
     ,col = color.centromere
     ,border = color.centromere
    )
-   if(show.text = T)text(apply(df[,c("start", "end")], 1, mean),c(y.text), df$band, las = 2, cex = 0.8,srt = 90 )
+   if(show.text == T)text(apply(df[,c("start", "end")], 1, mean),c(y.text), df$band, las = 2, cex = 0.8,srt = 90 )
 
 }
