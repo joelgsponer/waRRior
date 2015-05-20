@@ -3,8 +3,8 @@ waRRior.machinelearning.geneticalgorithm.mating <- function(
   ,drop.percent = 20
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
   ,function.id = 'waRRior.machinelearning.genetic_algorithm.mating' #Use this to identfy the function in error (or success messages if applicable) messages.
-  ,verbose = T #Turn messages on and off
-  ,debug = T #Turn debug messages on and off
+  ,verbose = F #Turn messages on and off
+  ,debug = F #Turn debug messages on and off
   ,simpleReturn = T
   ,...
 ){
