@@ -43,6 +43,13 @@ files.to.be.loaded.on.startup <- list(
   #Databases
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/databases/sqlite/waRRior.databases.sqlite.is_field_present.R"
   ,"https://github.com/joelgsponer/waRRior/blob/master/databases/sqlite/waRRior.databases.sqlite.add_field.R"
+  #Machine Learning
+  ##Genetic algorithm
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.individual.R"
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.individual.R"
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.mating.R"
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.mutation.R"
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.run.R"
 )
 
 source_https <- function(url, ...) {
