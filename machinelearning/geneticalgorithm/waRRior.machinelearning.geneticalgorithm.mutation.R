@@ -1,4 +1,4 @@
-waRRior.machinelearning.geneticalgorithm.mutation.R   <- function(
+waRRior.machinelearning.geneticalgorithm.mutation   <- function(
    chr
   ,mutation.frequency = 0.01
   ,genes.class = list("integer")
