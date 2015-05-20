@@ -247,11 +247,11 @@ evaluate <- function(object, test.data){
 }
 
 x <- seq(1,100)
-test.data <- x ^ 3 + 4
+test.data <- x ^ 56 + 4
 
 #Parameters
 population.size <- 10
-mutation.frequency <- 0.01
+mutation.frequency <- 0.1
 generation.maximum <- 1000
 plot.scores.history <-  T
 verbose = T
@@ -285,14 +285,13 @@ while(generation <= generation.maximum){
   scores[scores == Inf | scores == -Inf] <- NA
   o <- order(scores)
 
-  mating_pool <- mating(o)
+  mating_pool <- mating(o, verbose = F)
 
   old_population <- population
-  scores.history <- c(scores.history, mean(scores, na.rm = T))
+  scores.history <- c(scores.history, min(scores, na.rm = T))
 
   if(plot.scores.history){
-    print(scores.history)
-    plot(scores.history,col = google.colors$DeepOrange$main, type = "o")
+    plot(log(scores.history,10),col = google.colors$DeepOrange$main, type = "o", main = min(scores.history), cex = 0.5)
   }
   population <- list()
 
@@ -302,9 +301,6 @@ while(generation <= generation.maximum){
 
     new_chr <- crossover(old_population[[mother]]@chr, old_population[[father]]@chr, verbose = F, debug = F, simpleReturn = T)
     new_chr <- mutation(new_chr, mutation.frequency = mutation.frequency, verbose = F, debug = F, simpleReturn = T)
-    
-    print(new_chr)
-    print(class(new_chr))
 
     population <- c(population, create.individual(
        chr = new_chr
@@ -321,7 +317,10 @@ while(generation <= generation.maximum){
 }
 
 
-#
+scores <- unlist(lapply(population, function(x){x@score}))
+scores[scores == Inf | scores == -Inf] <- NA
+o <- order(scores)
+print(population[o[1]])
 
 
 
