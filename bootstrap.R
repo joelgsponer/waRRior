@@ -46,7 +46,7 @@ files.to.be.loaded.on.startup <- list(
   #Machine Learning
   ##Genetic algorithm
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.individual.R"
-  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.individual.R"
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.crossover.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.mating.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.mutation.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.run.R"
