@@ -2,10 +2,10 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
    chr.init
   ,evaluate.function
   ,test.data
-  ,population.size <- 10
-  ,mutation.frequency <- 0.1
-  ,generation.maximum <- 1000
-  ,plot.scores.history <-  T
+  ,population.size = 10
+  ,mutation.frequency = 0.1
+  ,generation.maximum = 1000
+  ,plot.scores.history =  T
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
   ,function.id = $id$ #Use this to identfy the function in error (or success messages if applicable) messages.
   ,verbose = F #Turn messages on and off
