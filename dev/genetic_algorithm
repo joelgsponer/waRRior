@@ -26,8 +26,7 @@ create.individual <- function(
 ){
   newIndividual <- new("individual")
   if(create.random.name){
-    require(random)
-    name <-c(randomStrings(n=1, len=10, digits=TRUE, upperalpha=TRUE,loweralpha=TRUE, unique=TRUE, check=TRUE))
+    name <- waRRior.snippets.create_random_string(2)
   }
   newIndividual@name <- name
   newIndividual@chr <- chr
@@ -82,7 +81,7 @@ mutation   <- function(
     }
     if(debug)print(new_chr)
     #define response
-    if(simpleReturn)return(new_chr)
+    if(simpleReturn)return(as.list(new_chr))
     response <- list(
        result <- as.list(new_chr)
       ,message <- paste(function.id, 'success')
@@ -116,6 +115,7 @@ crossover <- function(
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
   ,function.id = 'waRRior.machinelearning.genetic_algorithm.crossover' #Use this to identfy the function in error (or success messages if applicable) messages.
   ,verbose = T #Turn messages on and off
+  ,simpleReturn = T
   ,debug = T #Turn debug messages on and off
 ){
   tryCatch({
@@ -146,6 +146,7 @@ crossover <- function(
     if(debug) print(new_chr)
         
     #define response
+    if(simpleReturn) return(as.list(new_chr))
     response <- list(
        result <- as.list(new_chr)
       ,message <- paste(function.id, 'success')
@@ -251,7 +252,8 @@ test.data <- x ^ 3 + 4
 #Parameters
 population.size <- 10
 mutation.frequency <- 0.01
-generation.maximum <- 3
+generation.maximum <- 1000
+plot.scores.history <-  T
 verbose = T
 chr.init <- list(
    a = 1
@@ -278,26 +280,35 @@ for(i in seq(1, population.size)){
 }
 
 generation <- 1
-while(generation < generation.maximum){
+while(generation <= generation.maximum){
   scores <- unlist(lapply(population, function(x){x@score}))
+  scores[scores == Inf | scores == -Inf] <- NA
   o <- order(scores)
 
   mating_pool <- mating(o)
 
   old_population <- population
-  scores.history <- c(scores.history, mean(scores))
+  scores.history <- c(scores.history, mean(scores, na.rm = T))
+
+  if(plot.scores.history){
+    print(scores.history)
+    plot(scores.history,col = google.colors$DeepOrange$main, type = "o")
+  }
   population <- list()
 
   for(i in seq(1, population.size)){
     mother <- sample(mating_pool,1)
     father <- sample(mating_pool,1)
 
-    new_chr <- crossover(old_population[[mother]]$chr, old_population[[father]]$chr)
-    new_chr <- muation(new_chr, mutation.frequency = mutation.frequency)
+    new_chr <- crossover(old_population[[mother]]@chr, old_population[[father]]@chr, verbose = F, debug = F, simpleReturn = T)
+    new_chr <- mutation(new_chr, mutation.frequency = mutation.frequency, verbose = F, debug = F, simpleReturn = T)
+    
+    print(new_chr)
+    print(class(new_chr))
 
     population <- c(population, create.individual(
        chr = new_chr
-      ,name=old_population[[father]]$name
+      ,name=old_population[[father]]@name
       )
     )  
   }
@@ -306,7 +317,7 @@ while(generation < generation.maximum){
     population[[i]]@score <- s
   }
   generation <- generation + 1
-  waRRior.snippets.verbose(paste("generation:", generation), verbose_ = verbose_)
+  waRRior.snippets.verbose(paste("generation:", generation), verbose_ = verbose)
 }
 
 
