@@ -37,7 +37,7 @@ files.to.be.loaded.on.startup <- list(
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.backup_file.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.verbose.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.make_color_transparent.R"
-  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.create_random_string"
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.create_random_string.R"
   #Plotting
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/plot/waRRior.plot.connect_points_with_bezier.R"
   #Databases
