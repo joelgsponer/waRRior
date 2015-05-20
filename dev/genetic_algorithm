@@ -22,8 +22,13 @@ create.individual <- function(
    name = character(0)
   ,chr
   ,last.score = numeric(0) 
+  ,create.random.name = F
 ){
   newIndividual <- new("individual")
+  if(create.random.name){
+    require(random)
+    name <-c(randomStrings(n=1, len=10, digits=TRUE, upperalpha=TRUE,loweralpha=TRUE, unique=TRUE, check=TRUE))
+  }
   newIndividual@name <- name
   newIndividual@chr <- chr
   newIndividual@last.score <- last.score  
@@ -104,10 +109,6 @@ mutation   <- function(
   )
 }
 
-
-
-
-
 crossover <- function(
    #The chromosomes can be passed as a list.
    ...
@@ -173,3 +174,30 @@ crossover <- function(
      }
   )
 }
+
+#Parameters
+population.size <- 10
+chr.init <- list(
+   a = 1
+  ,b = 2
+)
+
+#Evaluation
+
+
+#Initalization
+population <- list()
+
+for(i in seq(1, population.size)){
+  population <- c(population, create.individual(chr = chr.init, create.random.name=T))  
+}
+
+#Run
+
+
+
+
+
+
+
+
