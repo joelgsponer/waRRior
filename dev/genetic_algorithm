@@ -2,26 +2,26 @@ setClass("individual",
   ,slots = c(
      name       = "character"
     ,chr        = "list"
-    ,last.score = "numeric"
+    ,score      = "numeric"
   )
 ) 
 
 setMethod("show", "individual", function(object){
   cat("--- Individual ---\n")
-  cat("Name:\t",object@name,"\n")
+  cat("Name : ",object@name,"\n")
   cat("---\n")
   for(i in seq(1,length(object@chr))){
-    cat(names(object@chr)[i],":\t",object@chr[[i]], "\n")
+    cat(names(object@chr)[i],": ",object@chr[[i]], "\n")
   }
   cat("---\n")
-  cat("Last score:\t",object@last.score,"\n")
+  cat("Score : ",object@score,"\n")
   cat("---\n")
 })
 
 create.individual <- function(
    name = character(0)
   ,chr
-  ,last.score = numeric(0) 
+  ,score = numeric(0) 
   ,create.random.name = F
 ){
   newIndividual <- new("individual")
@@ -31,7 +31,7 @@ create.individual <- function(
   }
   newIndividual@name <- name
   newIndividual@chr <- chr
-  newIndividual@last.score <- last.score  
+  newIndividual@score <- score  
   return(newIndividual)
 }
 
@@ -43,22 +43,23 @@ mutation   <- function(
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
   ,function.id = 'waRRior.machinelearning.genetic_algorithm.mutation' #Use this to identfy the function in error (or success messages if applicable) messages.
   ,simpleReturn = T
-  ,verbose = F #Turn messages on and off
-  ,debug = T #Turn debug messages on and off
+  ,verbose = T #Turn messages on and off
+  ,debug = F #Turn debug messages on and off
   ,...
 ){
   tryCatch({
     if(!(simpleReturn))t <- Sys.time() 
     #Actual Function code
     nr_genes <- length(chr)
+    waRRior.snippets.verbose(paste("number of genes:", nr_genes), verbose_ = verbose)
     if(length(genes.class) != length(genes.range)) stop("nucleotides.class and nucleotides.range must have the same length (either 1 or equal to the number of genes)")
     if(length(genes.class) == 1 & length(genes.range) == 1){
        waRRior.snippets.verbose("expanding genes.class and genes genes.range.", verbose_ = verbose)
        genes.class_ <- genes.class
-       for(i in seq(2, length(nr_genes)))genes.class <- c(genes.class, genes.class_)
+       for(i in seq(2, nr_genes))genes.class <- c(genes.class, genes.class_)
        if(debug)print(genes.class)
        genes.range_ <- genes.range
-       for(i in seq(2, length(nr_genes)))genes.range <- c(genes.range, genes.range_)
+       for(i in seq(2, nr_genes))genes.range <- c(genes.range, genes.range_)
        if(debug)print(genes.range)
     }
     if((length(genes.class) != 1 | length(genes.range) != 1) & (length(genes.class) != nr_genes | length(genes.range) != nr_genes)) stop("genes.class and genes.range have to be either 1 or eual to to the number of genes")
@@ -175,6 +176,64 @@ crossover <- function(
   )
 }
 
+
+mating <- function(
+   o
+  ,drop.percent = 20
+  ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
+  ,function.id = 'waRRior.machinelearning.genetic_algorithm.mating' #Use this to identfy the function in error (or success messages if applicable) messages.
+  ,verbose = T #Turn messages on and off
+  ,debug = T #Turn debug messages on and off
+  ,simpleReturn = T
+  ,...
+){
+  tryCatch({
+    t <- Sys.time() 
+    #Actual Function code
+    nr_individuals <- length(o)
+    waRRior.snippets.verbose(paste('nr of individuals:', nr_individuals), verbose_ = verbose)
+
+    #drop
+    o <- o[1:(nr_individuals - round((nr_individuals/100*drop.percent),0))]
+    nr_individuals <- length(o)
+    if(debug)print(o)
+    w <- rev(round(pexp(seq(1,nr_individuals),1/nr_individuals, log = F)*100,0))
+    if(debug)print(w)
+    mating_pool <- rep(o,w)
+        
+    #define response
+    response <- list(
+       result <- as.list(mating_pool)
+      ,message <- paste(function.id, 'success')
+      ,error = 0
+      ,e = NULL
+      ,time.elapsed = as.numeric(difftime(Sys.time(), t), units = "secs")
+    )
+    
+    #Success message
+    waRRior.snippets.verbose(paste(function.id,'success'), verbose_ = verbose)
+    
+    #Return respond
+    if(simpleReturn)return(mating_pool)
+    return(response)
+  
+   #Error handling
+   }, error = function(e, silent = is.silent){
+     #If silent supress error and return list instead
+      if(silent){
+       return(list(
+          message = sprintf("Error during function: %s", function.id)
+         ,error = 1
+         ,e = e
+       ))
+      }else{
+        stop(e)
+      }
+     }
+  )
+}
+
+
 evaluate <- function(object, test.data){
   
   #Function code
@@ -191,28 +250,70 @@ test.data <- x ^ 3 + 4
 
 #Parameters
 population.size <- 10
+mutation.frequency <- 0.01
+generation.maximum <- 3
+verbose = T
 chr.init <- list(
    a = 1
   ,b = 2
 )
 
 #Initalization
+scores.history <- c()
 population <- list()
 
 for(i in seq(1, population.size)){
   population <- c(population, create.individual(
-     chr = chr.init
+     chr = mutation(chr.init
+       ,mutation.frequency = 1
+       ,verbose = F
+       ) 
     ,create.random.name=T
     )
   )  
 }
-
 for(i in seq(1, population.size)){
   s <- evaluate(population[[i]], test.data)
-  population[[i]]@last.score <- s
+  population[[i]]@score <- s
 }
 
-#Run
+generation <- 1
+while(generation < generation.maximum){
+  scores <- unlist(lapply(population, function(x){x@score}))
+  o <- order(scores)
+
+  mating_pool <- mating(o)
+
+  old_population <- population
+  scores.history <- c(scores.history, mean(scores))
+  population <- list()
+
+  for(i in seq(1, population.size)){
+    mother <- sample(mating_pool,1)
+    father <- sample(mating_pool,1)
+
+    new_chr <- crossover(old_population[[mother]]$chr, old_population[[father]]$chr)
+    new_chr <- muation(new_chr, mutation.frequency = mutation.frequency)
+
+    population <- c(population, create.individual(
+       chr = new_chr
+      ,name=old_population[[father]]$name
+      )
+    )  
+  }
+  for(i in seq(1, population.size)){
+    s <- evaluate(population[[i]], test.data)
+    population[[i]]@score <- s
+  }
+  generation <- generation + 1
+  waRRior.snippets.verbose(paste("generation:", generation), verbose_ = verbose_)
+}
+
+
+#
+
+
+
 
 
 
