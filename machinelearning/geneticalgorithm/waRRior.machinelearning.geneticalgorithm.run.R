@@ -7,7 +7,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
   ,generation.maximum = 1000
   ,plot.scores.history =  T
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
-  ,function.id = $id$ #Use this to identfy the function in error (or success messages if applicable) messages.
+  ,function.id = "waRRior.machinelearning.geneticalgorithm.run" #Use this to identfy the function in error (or success messages if applicable) messages.
   ,verbose = F #Turn messages on and off
   ,simpleReturn = T
   ,debug = F #Turn debug messages on and off
