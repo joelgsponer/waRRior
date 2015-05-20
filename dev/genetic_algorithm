@@ -175,6 +175,20 @@ crossover <- function(
   )
 }
 
+evaluate <- function(object, test.data){
+  
+  #Function code
+  x <- seq(1, 100)
+  prediction <- x ^ object@chr$a + object@chr$b
+  
+  score <- sum((test.data - prediction)^2)
+  #Retrun Score
+  return(score)
+}
+
+x <- seq(1,100)
+test.data <- x ^ 3 + 4
+
 #Parameters
 population.size <- 10
 chr.init <- list(
@@ -182,14 +196,20 @@ chr.init <- list(
   ,b = 2
 )
 
-#Evaluation
-
-
 #Initalization
 population <- list()
 
 for(i in seq(1, population.size)){
-  population <- c(population, create.individual(chr = chr.init, create.random.name=T))  
+  population <- c(population, create.individual(
+     chr = chr.init
+    ,create.random.name=T
+    )
+  )  
+}
+
+for(i in seq(1, population.size)){
+  s <- evaluate(population[[i]], test.data)
+  population[[i]]@last.score <- s
 }
 
 #Run
