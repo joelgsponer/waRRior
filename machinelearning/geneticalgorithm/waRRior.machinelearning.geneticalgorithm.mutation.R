@@ -6,7 +6,7 @@ waRRior.machinelearning.geneticalgorithm.mutation   <- function(
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
   ,function.id = 'waRRior.machinelearning.genetic_algorithm.mutation' #Use this to identfy the function in error (or success messages if applicable) messages.
   ,simpleReturn = T
-  ,verbose = T #Turn messages on and off
+  ,verbose = F #Turn messages on and off
   ,debug = F #Turn debug messages on and off
   ,...
 ){
