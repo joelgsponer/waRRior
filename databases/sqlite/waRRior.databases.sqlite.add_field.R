@@ -1,4 +1,3 @@
-
 #This function adds a field to the designated database and field if it does not yet exist (depends on dbCheckFields)
 waRRior.databases.sqlite.add_field <- function(
    db
