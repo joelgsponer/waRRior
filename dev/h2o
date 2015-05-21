@@ -138,3 +138,58 @@ for (preds in list(low_level_predictors, low_and_high_level_predictors)) {
 h2o.deeplearning(x=low_level_predictors, y=response, activation="RectifierWithDropout", data=train_hex,
                  validation=valid_hex, input_dropout_ratio=0, hidden_dropout_ratios=c(0.2,0.1,0.1,0),
                  l1=1e-5, l2=1e-5, epochs=20, hidden=c(200,200,200,200))
+
+
+
+evaluate_deep_neural_network <- function(object, train_hex, valid_hex, test_hex){
+  #Function code
+  model <- h2o.deeplearning(
+  	    x=3:12
+  	  , y=2
+  	  ,activation="RectifierWithDropout"
+  	  ,data=train_hex
+  	  ,validation=valid_hex
+  	  ,input_dropout_ratio=0
+  	  ,hidden_dropout_ratios=c(0.2,0.1,0.1,0)
+  	  ,l1=1e-5
+  	  ,l2=1e-5
+  	  ,epochs= 10
+  	  ,hidden=c(object@chr$hidden1,object@chr$hidden2,object@chr$hidden3)
+  ) 
+
+
+  h2o.get_auc <- function(model, data, response = 2) {
+      pred <- h2o.predict(model, data)[,3]
+      perf <- h2o.performance(pred, data[,response])
+      perf@model$auc
+    }
+
+  score <- h2o.get_auc(model, test_hex, )
+  #Retrun Score
+  return(score)
+
+}
+
+chr <- list(
+   hidden1 = 100
+  ,hidden2 = 100
+  ,hidden3 = 100
+)
+genes.class <- list(
+  "integer"
+)
+genes.range <- list(
+ c(1,100)
+)
+
+waRRior.machinelearning.geneticalgorithm.run(
+   chr.init = chr
+  ,genes.class = genes.class
+  ,genes.range = genes.range
+  ,train.data = train_hex
+  ,validation.data = valid_hex
+  ,test.data = test_hex
+  ,evaluate.function = evaluate_deep_neural_network
+  ,verbose = F
+  ,plot.logscale = F
+)
