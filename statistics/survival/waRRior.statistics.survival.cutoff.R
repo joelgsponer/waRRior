@@ -86,7 +86,7 @@ waRRior.statistics.survival.cutoff <- function(
 
 	 cut <- cuts[pvalues == min(pvalues, rm.na = T)]
 	 cut <- cut[1]
-
+         dev.new()
 	 par(mfrow = c(2,1))
 	 if(LogRankScore) par(mfrow = c(3,1))
 	 plot(cuts
@@ -137,7 +137,7 @@ waRRior.statistics.survival.cutoff <- function(
 	 Surv1 <- Surv(time, status)
 
 	 Fit1 <- survfit(Surv1 ~ strat)
-
+         dev.new()
 	 par(mfrow = c(1,1))
 	 plot(Fit1, col = colorSet, lwd = 3, main = main)
 	 legend(max(time, na.rm = T)-(max(time, na.rm = T)/100*25),0.2, fill = colorSet, legend = c(paste("Low:",n1[pvalues == min(pvalues)][1]),paste("High:",n2[pvalues == min(pvalues)][1])), border = borderColor, box.col = box.col)
