@@ -4,8 +4,8 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
   ,train.data
   ,validation.data = NA
   ,test.data = NA
-  ,genes.class = "integer"
-  ,genes.range = c(1,100)
+  ,genes.class = list("integer")
+  ,genes.range = list(c(1,100))
   ,population.size = 10
   ,mutation.frequency = 0.1
   ,generation.maximum = 1000
