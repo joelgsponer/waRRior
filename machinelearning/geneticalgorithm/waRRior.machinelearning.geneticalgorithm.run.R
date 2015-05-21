@@ -25,18 +25,22 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     scores.history <- c()
     population <- list()
     par(lwd = 3)
+    waRRior.snippets.verbose("creating intial population", verbose_ = verbose)
     for(i in seq(1, population.size)){
       population <- c(population, waRRior.machinelearning.geneticalgorithm.create_individual(
-         chr = waRRior.machinelearning.geneticalgorithm.mutation(chr.init
+         chr = waRRior.machinelearning.geneticalgorithm.mutation(
+            chr.init
            ,mutation.frequency = 1
            ,genes.class = genes.class
            ,genes.range = genes.range
-           ,verbose = F
+           ,verbose = verbose
+           ,debug = debug
           ) 
         ,create.random.name=T
         )
       )  
-    }
+    }    
+    waRRior.snippets.verbose("evaluating intial population", verbose_ = verbose)
     for(i in seq(1, population.size)){
       s <- evaluate.function(population[[i]], train.data, validation.data,test.data)
       population[[i]]@score <- s
@@ -45,11 +49,12 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     #Loop
     generation <- 1
     while(generation <= generation.maximum){
+      waRRior.snippets.verbose(paste("generation:",generation), verbose_ = verbose)
       scores <- unlist(lapply(population, function(x){x@score}))
       scores[scores == Inf | scores == -Inf] <- NA
       o <- order(scores)
       if(higher.score)o <- rev(order(scores))
-
+      waRRior.snippets.verbose(paste("best score:",scores[o[1]]), verbose_ = verbose)
       mating_pool <- waRRior.machinelearning.geneticalgorithm.mating(o)
 
       old_population <- population
@@ -69,11 +74,17 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       father <- sample(mating_pool,1)
       
       #Mutation and Crossover
-      new_chr <- waRRior.machinelearning.geneticalgorithm.crossover(old_population[[mother]]@chr, old_population[[father]]@chr, verbose = F, debug = F, simpleReturn = T)
+      new_chr <- waRRior.machinelearning.geneticalgorithm.crossover(
+                   old_population[[mother]]@chr
+                   ,old_population[[father]]@chr
+                   ,verbose = verbose
+                   ,debug = debug
+                   ,simpleReturn = T
+                   )
       new_chr <- waRRior.machinelearning.geneticalgorithm.mutation(new_chr
                    ,mutation.frequency = mutation.frequency
-                   ,verbose = F
-                   ,debug = F
+                   ,verbose = verbose
+                   ,debug = debug
                    ,simpleReturn = T
                    ,genes.class = genes.class
                    ,genes.range = genes.range
@@ -91,13 +102,13 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       population[[i]]@score <- s
     }
       generation <- generation + 1
-      waRRior.snippets.verbose(paste("generation:", generation), verbose_ = verbose)
     }
 
     scores <- unlist(lapply(population, function(x){x@score}))
     scores[scores == Inf | scores == -Inf] <- NA
     o <- order(scores)
     if(higher.score)o <- rev(order(scores))
+    
     #define response
     if(simpleReturn)return(population[o[1]])
     response <- list(
