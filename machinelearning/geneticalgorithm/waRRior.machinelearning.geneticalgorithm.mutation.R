@@ -15,8 +15,13 @@ waRRior.machinelearning.geneticalgorithm.mutation   <- function(
     #Actual Function code
     nr_genes <- length(chr)
     waRRior.snippets.verbose(paste("number of genes:", nr_genes), verbose_ = verbose)
+    waRRior.snippets.verbose(paste("number of classes:", length(genes.class)), verbose_ = verbose)
+    if(debug)print(genes.class)
+    waRRior.snippets.verbose(paste("number of ranges:", length(genes.range)), verbose_ = verbose)
+    if(debug)print(genes.range)
+    
     if(length(genes.class) != length(genes.range)) stop("nucleotides.class and nucleotides.range must have the same length (either 1 or equal to the number of genes)")
-    if(length(genes.class) == 1 & length(genes.range) == 1){
+    if(length(genes.class) == 1 & length(genes.range) == 1 & nr_genes != 1){
        waRRior.snippets.verbose("expanding genes.class and genes genes.range.", verbose_ = verbose)
        genes.class_ <- genes.class
        for(i in seq(2, nr_genes))genes.class <- c(genes.class, genes.class_)
