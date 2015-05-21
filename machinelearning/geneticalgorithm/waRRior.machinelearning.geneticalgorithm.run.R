@@ -1,7 +1,9 @@
 waRRior.machinelearning.geneticalgorithm.run <- function(
    chr.init
   ,evaluate.function
-  ,test.data
+  ,train.data
+  ,validation.data = NA
+  ,test.data = NA
   ,population.size = 10
   ,mutation.frequency = 0.1
   ,generation.maximum = 1000
@@ -32,7 +34,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       )  
     }
     for(i in seq(1, population.size)){
-      s <- evaluate.function(population[[i]], test.data)
+      s <- evaluate.function(population[[i]], train.data, validation.data,test.data)
       population[[i]]@score <- s
     }
     
@@ -68,7 +70,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       )  
     }
     for(i in seq(1, population.size)){
-      s <- evaluate.function(population[[i]], test.data)
+      s <- evaluate.function(population[[i]], train.data,validation.data,test.data)
       population[[i]]@score <- s
     }
       generation <- generation + 1
