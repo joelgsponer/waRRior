@@ -16,6 +16,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
   ,verbose = F #Turn messages on and off
   ,simpleReturn = T
   ,debug = F #Turn debug messages on and off
+  ,plot.logscale = F
   ,...){
   tryCatch({
     t <- Sys.time() 
@@ -42,7 +43,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     }    
     waRRior.snippets.verbose("evaluating intial population", verbose_ = verbose)
     for(i in seq(1, population.size)){
-      s <- evaluate.function(population[[i]], train.data, validation.data,test.data)
+      s <- evaluate.function(population[[i]], train.data, validation.data,test.data,...)
       population[[i]]@score <- s
     }
     
@@ -58,10 +59,11 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       mating_pool <- waRRior.machinelearning.geneticalgorithm.mating(o)
 
       old_population <- population
-      scores.history <- c(scores.history, min(scores, na.rm = T))
+      scores.history <- c(scores.history, scores[o[1]])
 
     if(plot.scores.history){
-      plot(log(scores.history,10),col = google.colors$DeepOrange$main, type = "l", main = min(scores.history), cex = 0.5, xlim = c(0,generation.maximum))
+      if(plot.logscale)plot(log(scores.history,10),col = google.colors$DeepOrange$main, type = "l", main = scores[o[1]], cex = 0.5, xlim = c(0,generation.maximum))
+      else plot(scores.history,col = google.colors$DeepOrange$main, type = "l", main = scores[o[1]], cex = 0.5, xlim = c(0,generation.maximum))
     }
     
     #Generate new Population/Generation
@@ -98,7 +100,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       )  
     }
     for(i in seq(1, population.size)){
-      s <- evaluate.function(population[[i]], train.data,validation.data,test.data)
+      s <- evaluate.function(population[[i]], train.data,validation.data,test.data,...)
       population[[i]]@score <- s
     }
       generation <- generation + 1
