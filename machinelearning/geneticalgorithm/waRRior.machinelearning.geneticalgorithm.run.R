@@ -19,7 +19,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     #Initalization
     scores.history <- c()
     population <- list()
-
+    par(lwd = 3)
     for(i in seq(1, population.size)){
       population <- c(population, waRRior.machinelearning.geneticalgorithm.create_individual(
          chr = waRRior.machinelearning.geneticalgorithm.mutation(chr.init
@@ -48,7 +48,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       scores.history <- c(scores.history, min(scores, na.rm = T))
 
     if(plot.scores.history){
-      plot(log(scores.history,10),col = google.colors$DeepOrange$main, type = "o", main = min(scores.history), cex = 0.5)
+      plot(log(scores.history,10),col = google.colors$DeepOrange$main, type = "b", main = min(scores.history), cex = 0.5, xlim = c(0,generation.maximum))
     }
     population <- list()
 
