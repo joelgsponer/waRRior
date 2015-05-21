@@ -5,6 +5,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
   ,population.size = 10
   ,mutation.frequency = 0.1
   ,generation.maximum = 1000
+  ,higher.score = T
   ,plot.scores.history =  T
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
   ,function.id = "waRRior.machinelearning.geneticalgorithm.run" #Use this to identfy the function in error (or success messages if applicable) messages.
@@ -41,6 +42,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       scores <- unlist(lapply(population, function(x){x@score}))
       scores[scores == Inf | scores == -Inf] <- NA
       o <- order(scores)
+      if(higher.score)o <- rev(order(scores))
 
       mating_pool <- waRRior.machinelearning.geneticalgorithm.mating(o)
 
@@ -76,7 +78,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     scores <- unlist(lapply(population, function(x){x@score}))
     scores[scores == Inf | scores == -Inf] <- NA
     o <- order(scores)
-    
+    if(higher.score)o <- rev(order(scores))
     #define response
     if(simpleReturn)return(population[o[1]])
     response <- list(
