@@ -25,7 +25,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     #Initalization
     scores.history <- c()
     population <- list()
-    par(lwd = 3)
+    par(lwd = 1)
     waRRior.snippets.verbose("creating intial population", verbose_ = verbose)
     for(i in seq(1, population.size)){
       population <- c(population, waRRior.machinelearning.geneticalgorithm.create_individual(
