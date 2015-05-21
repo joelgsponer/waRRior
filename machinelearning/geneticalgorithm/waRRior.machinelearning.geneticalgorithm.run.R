@@ -4,6 +4,8 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
   ,train.data
   ,validation.data = NA
   ,test.data = NA
+  ,genes.class = "integer"
+  ,genes.range = c(1,100)
   ,population.size = 10
   ,mutation.frequency = 0.1
   ,generation.maximum = 1000
@@ -27,6 +29,8 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       population <- c(population, waRRior.machinelearning.geneticalgorithm.create_individual(
          chr = waRRior.machinelearning.geneticalgorithm.mutation(chr.init
            ,mutation.frequency = 1
+           ,genes.class = genes.class
+           ,genes.range = genes.range
            ,verbose = F
           ) 
         ,create.random.name=T
@@ -54,15 +58,28 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     if(plot.scores.history){
       plot(log(scores.history,10),col = google.colors$DeepOrange$main, type = "l", main = min(scores.history), cex = 0.5, xlim = c(0,generation.maximum))
     }
+    
+    #Generate new Population/Generation
     population <- list()
 
     for(i in seq(1, population.size)){
+    
+      #Define Mother and Father    
       mother <- sample(mating_pool,1)
       father <- sample(mating_pool,1)
-
+      
+      #Mutation and Crossover
       new_chr <- waRRior.machinelearning.geneticalgorithm.crossover(old_population[[mother]]@chr, old_population[[father]]@chr, verbose = F, debug = F, simpleReturn = T)
-      new_chr <- waRRior.machinelearning.geneticalgorithm.mutation(new_chr, mutation.frequency = mutation.frequency, verbose = F, debug = F, simpleReturn = T)
-
+      new_chr <- waRRior.machinelearning.geneticalgorithm.mutation(new_chr
+                   ,mutation.frequency = mutation.frequency
+                   ,verbose = F
+                   ,debug = F
+                   ,simpleReturn = T
+                   ,genes.class = genes.class
+                   ,genes.range = genes.range
+                  )
+      
+      #Generate Individuum
       population <- c(population, waRRior.machinelearning.geneticalgorithm.create_individual(
          chr = new_chr
         ,name=old_population[[father]]@name
@@ -94,7 +111,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     #Success message
     waRRior.snippets.verbose(paste(function.id,'success'), verbose_ = verbose)
     
-    #Return respond
+    #Return response
     return(response)
   
    #Error handling
