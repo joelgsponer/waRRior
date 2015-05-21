@@ -1,9 +1,9 @@
 #This function adds a field to the designated database and field if it does not yet exist (depends on dbCheckFields)
 waRRior.databases.sqlite.add_field <- function(
    db
-  ,field
-  ,table
-  ,type
+  #,field
+  #,table
+  #,type
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
   ,function.id = 'waRRior.databases.sqlite.add_field' #Use this to identfy the function in error (or success messages if applicable) messages.
   ,verbose = F #Turn messages on and off
