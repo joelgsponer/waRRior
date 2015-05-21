@@ -1,0 +1,47 @@
+
+
+library(h2o)
+h2oServer <- h2o.init(nthreads=-1)
+
+
+homedir <- wd
+TRAIN = "train.csv"
+data_hex <- h2o.importFile(h2oServer, path = paste0(homedir,TRAIN), header = T, sep = ',', key = 'data_hex')
+
+data_hex <- h2o.rebalance(data_hex, chunks=64, key='data_hex.rebalanced')
+
+random <- h2o.runif(data_hex, seed = 123456789)
+train_hex <- h2o.assign(data_hex[random < .8,], "train_hex")
+valid_hex <- h2o.assign(data_hex[random >= .8 & random < .9,], "valid_hex")
+test_hex  <- h2o.assign(data_hex[random >= .9,], "test_hex")
+h2o.rm(h2oServer, grep(pattern = "Last.value", x = h2o.ls(h2oServer)$Key, value = TRUE))
+
+response = 2
+low_level_predictors = c(3:11)
+low_and_high_level_predictors = c("Sex","Age","Pclass")
+
+N_FOLDS=2
+
+for (preds in list(low_level_predictors, low_and_high_level_predictors)) {
+  data = list(x=preds, y=response, train=train_hex, valid=valid_hex, nfolds=N_FOLDS)
+
+  models <- c(
+    h2o.fit(h2o.glm, data,
+            list(family="binomial", variable_importances=T, lambda=c(1e-5,1e-4), use_all_factor_levels=T)),
+    h2o.fit(h2o.randomForest, data,
+            list(type="fast", importance=TRUE, ntree=c(5), depth=c(5,10))),
+    h2o.fit(h2o.randomForest, data,
+            list(type="BigData", importance=TRUE, ntree=c(5), depth=c(5,10))),
+    h2o.fit(h2o.gbm, data,
+            list(importance=TRUE, n.tree=c(10), interaction.depth=c(2,5))),
+    h2o.fit(h2o.deeplearning, data,
+            list(variable_importances=T, l1=c(1e-5), epochs=1, hidden=list(c(10,10,10), c(100,100))))
+  )
+  best_model <- h2o.leaderBoard(models, test_hex, response)
+  h2o.rm(h2oServer, grep(pattern = "Last.value", x = h2o.ls(h2oServer)$Key, value = TRUE))
+}
+
+
+h2o.deeplearning(x=low_level_predictors, y=response, activation="RectifierWithDropout", data=train_hex,
+                 validation=valid_hex, input_dropout_ratio=0, hidden_dropout_ratios=c(0.2,0.1,0.1,0),
+                 l1=1e-5, l2=1e-5, epochs=20, hidden=c(200,200,200,200))
