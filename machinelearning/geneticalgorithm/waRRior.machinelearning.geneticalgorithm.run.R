@@ -48,7 +48,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       scores.history <- c(scores.history, min(scores, na.rm = T))
 
     if(plot.scores.history){
-      plot(log(scores.history,10),col = google.colors$DeepOrange$main, type = "b", main = min(scores.history), cex = 0.5, xlim = c(0,generation.maximum))
+      plot(log(scores.history,10),col = google.colors$DeepOrange$main, type = "l", main = min(scores.history), cex = 0.5, xlim = c(0,generation.maximum))
     }
     population <- list()
 
