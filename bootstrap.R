@@ -61,8 +61,8 @@ source_https <- function(url, ...) {
     eval(parse(text = getURL(u, followlocation = TRUE, cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))), envir = .GlobalEnv)
   })
 }
-
-cat("Loading files:\n")
+source_https("https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.verbose.R")
+waRRior.snippets.verbose("Loading files:", verbose_ = T)
 for(f in files.to.be.loaded.on.startup){
   tryCatch({
     source_https(f)
@@ -77,4 +77,4 @@ for(f in files.to.be.loaded.on.startup){
 }
 
 
-cat("waRRior is ready!\n")
+waRRior.snippets.verbose("waRRior is ready!", verbose_ = T)
