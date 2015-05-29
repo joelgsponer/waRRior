@@ -71,10 +71,10 @@ for(f in files.to.be.loaded.on.startup){
     waRRior.snippets.verbose(paste("\t*",function.id, "\n"), verbose_ = T)
     },
     error = function(e, f_ = f){
-     cat(sprintf("\nwaRRior: ERROR loading %s !!!!!!!\n", f_))
+     waRRior.snippets.verbose(sprintf("ERROR loading %s", f_))
      print(e)
      })
 }
 
 
-waRRior.snippets.verbose("waRRior is ready!", verbose_ = T)
+waRRior.snippets.verbose("ready!", verbose_ = T)
