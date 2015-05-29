@@ -68,7 +68,7 @@ for(f in files.to.be.loaded.on.startup){
     source_https(f)
     function.id <- unlist(strsplit(f,"/"))
     function.id <- function.id[length(function.id)]
-    waRRior.snippets.verbose(paste("\t*",function.id, "\n"), verbose_ = T)
+    waRRior.snippets.verbose(paste("\t*",function.id), verbose_ = T)
     },
     error = function(e, f_ = f){
      waRRior.snippets.verbose(sprintf("ERROR loading %s", f_))
