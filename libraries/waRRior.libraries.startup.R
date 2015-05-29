@@ -1,6 +1,6 @@
-waRRior.snippets.verbose("loading startup libraries:\n", verbose_ = T)
+waRRior.snippets.verbose("loading startup libraries:", verbose_ = T)
 require(RCurl)
 require(plyr)
 require(dplyr)
 require(RJSONIO)
-waRRior.snippets.verbose("startup libraries loaded.\n", verbose_ = T)
+waRRior.snippets.verbose("startup libraries loaded.", verbose_ = T)
