@@ -102,7 +102,7 @@ waRRior.machinelearning.datapreparation.dynamic_data_evaluation <- function(df, 
           }        
           ,low = {
             variables.input = c(variables.input, col)
-            variables.input.low.importance = c(jvariables.input.low.importance, col)
+            variables.input.low.importance = c(variables.input.low.importance, col)
             waRRior.snippets.verbose("low importance input variables:")
             print(variables.input.low.importance)
           }
