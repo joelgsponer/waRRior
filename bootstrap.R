@@ -44,6 +44,8 @@ files.to.be.loaded.on.startup <- list(
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/databases/sqlite/waRRior.databases.sqlite.is_field_present.R"
   ,"https://github.com/joelgsponer/waRRior/blob/master/databases/sqlite/waRRior.databases.sqlite.add_field.R"
   #Machine Learning
+  ##Data preparation
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/datapreparation/waRRior.machinelearning.datapreparation.dynamic_data_evaluation.R"
   ##Genetic algorithm
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.individual.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.crossover.R"
