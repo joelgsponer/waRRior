@@ -41,6 +41,7 @@ waRRior.machinelearning.datapreparation.dynamic_data_evaluation <- function(df, 
           ,t = print(table(df[,col]))
           ,s = print(summary(df[,col]))
           ,b = {
+            par(mar = c(4,6,4,4))
             barplot(table(df[,col]), col = google.colors$Indigo$accent[1], border = google.colors$Indigo$accent[4], lwd = 3, las = 2, cex.names = 0.7)
           }
           ,h = {
@@ -48,9 +49,9 @@ waRRior.machinelearning.datapreparation.dynamic_data_evaluation <- function(df, 
           }
           ,a = {
             tmp <- df[,col]
-            tmp.log <- log(df[,col])
-            tmp.z <- scale(df[,col])
-            tmp.log.z <- scale(tmp.log)
+            tmp.log <- log(tmp)
+            tmp.z <- scale(tmp)
+            tmp.log.z <- scale(tmp)
 
             dev.new(width = 12, height = 6)
             par(mfrow = c(2,4))
@@ -105,17 +106,20 @@ waRRior.machinelearning.datapreparation.dynamic_data_evaluation <- function(df, 
             variables.input.low.importance = c(variables.input.low.importance, col)
             waRRior.snippets.verbose("low importance input variables:")
             print(variables.input.low.importance)
+            user.input = 'n'    
           }
           ,high = {
             variables.input = c(variables.input, col)
             variables.input.high.importance = c(variables.input.high.importance, col)
             waRRior.snippets.verbose("high importance input variables:")
             print(variables.input.high.importance)
+            user.input = 'n'    
           }
           ,out = {
             variables.output = c(variables.output, col)
             waRRior.snippets.verbose("output variables:")
             print(variables.output)
+            user.input = 'n'    
           }
           #Controls
           ,n = waRRior.snippets.verbose("...next...")
