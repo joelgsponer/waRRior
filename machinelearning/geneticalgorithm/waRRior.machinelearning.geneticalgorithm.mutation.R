@@ -36,13 +36,16 @@ waRRior.machinelearning.geneticalgorithm.mutation   <- function(
     new_chr <- chr
     for(i in seq(1,nr_genes)){
       if(is.mutated[i]){
-        new_chr[i] <- switch(genes.class[[i]][1],
+        switch(genes.class[[i]][1],
              integer        = sample(seq(genes.range[[i]][1], genes.range[[i]][2], 1),1)
             ,boolean        = sample(c(F,T),1)
             ,float          = sample(runif(1, genes.range[[i]][1], genes.range[[i]][2]),1)
             ,class          = sample(genes.range[[i]],1)
-            ,boolean.vector = sample(c(F,T),genes.range[[i]], replace = T)
+            ,boolean_vector = {
+              sample(c(F,T),size = 5, replace = T)
+            }
          )
+        if(debug)print("New chr:")
         if(debug)print(new_chr[i])
       }
     }
