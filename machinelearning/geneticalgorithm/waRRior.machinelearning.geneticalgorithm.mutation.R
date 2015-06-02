@@ -42,7 +42,7 @@ waRRior.machinelearning.geneticalgorithm.mutation   <- function(
             ,boolean        = sample(c(F,T),1)
             ,float          = runif(1, genes.range[[i]][1], genes.range[[i]][2])
             ,class          = sample(genes.range[[i]],1)
-            ,boolean.vector = sample(c(F,T),length(chr[i]), replace = T)
+            ,boolean.vector = sample(c(F,T),genes.range[[i]], replace = T)
          )
          ,size = 1
          ,replace = T
