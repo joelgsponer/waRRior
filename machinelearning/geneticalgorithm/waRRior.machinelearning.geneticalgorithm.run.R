@@ -73,7 +73,15 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     
       #Define Mother and Father    
       mother <- sample(mating_pool,1)
+      if(debug){
+        print("Mother:")
+        print(mother)
+      }
       father <- sample(mating_pool,1)
+      if(debug){
+        print("Father")
+        print(father)
+      }
       
       #Mutation and Crossover
       new_chr <- waRRior.machinelearning.geneticalgorithm.crossover(
