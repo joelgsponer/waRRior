@@ -176,6 +176,6 @@ waRRior.machinelearning.datapreparation.dynamic_data_evaluation <- function(df, 
     ,variables.input.low.importance = unique(variables.input.low.importance)
     ,variables.scaled = unique(variables.scaled)
     ,variables.logtransformed = unique(variables.logtransformed)
-    ,varibales.exclude = unique(varibales.exclude)
+    ,variables.exclude = unique(varibales.exclude)
   ))
 }
