@@ -1,5 +1,5 @@
 
-waRRior.machinelearning.datapreparation.dynamic_data_evaluation <- function(df, as.dplyr = t){
+waRRior.machinelearning.datapreparation.dynamic_data_evaluation <- function(df, as.dplyr = T){
   #Style
   par(lwd = 3)
   dev.off()
@@ -8,7 +8,7 @@ waRRior.machinelearning.datapreparation.dynamic_data_evaluation <- function(df, 
       b <- readline("do you want to save the df? (y/n)")
       if(b == "y"){
         p <- readline("please indicate path:")
-        save(df, file = p)
+        tryCatc(save(df, file = p), error = function(e)]{cat("Please check path - file not saved")})
       }
   }
   #Variables
