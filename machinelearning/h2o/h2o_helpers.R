@@ -4,7 +4,7 @@
       tryCatch({
         pred <- h2o.predict(model, data)[,3]
         perf <- h2o.performance(pred, data[,response])
-        retrun(perf@model$auc)
+        return(perf@model$auc)
       }, error = function(e){return(0)})
     }
     
