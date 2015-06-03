@@ -1,9 +1,11 @@
  TOP_FEATURES = 5
     
     h2o.get_auc <- function(model, data, response) {
-      pred <- h2o.predict(model, data)[,3]
-      perf <- h2o.performance(pred, data[,response])
-      perf@model$auc
+      tryCatch({
+        pred <- h2o.predict(model, data)[,3]
+        perf <- h2o.performance(pred, data[,response])
+        retrun(perf@model$auc)
+      }, error = function(e){return(0)})
     }
     
     h2o.varimp <- function(algo, model) {
