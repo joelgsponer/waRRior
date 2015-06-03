@@ -17,6 +17,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
   ,simpleReturn = T
   ,debug = F #Turn debug messages on and off
   ,plot.logscale = F
+  ,save.population = T
   ,...){
   tryCatch({
     t <- Sys.time() 
@@ -111,6 +112,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       s <- evaluate.function(population[[i]], train.data,validation.data,test.data,...)
       population[[i]]@score <- s
     }
+      if(save.population) save(population file ="genetic.algorithm.population.Rdata")
       generation <- generation + 1
     }
 
