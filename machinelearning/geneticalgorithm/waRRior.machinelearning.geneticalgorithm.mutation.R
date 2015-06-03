@@ -34,19 +34,18 @@ waRRior.machinelearning.geneticalgorithm.mutation   <- function(
     is.mutated <- rbinom(nr_genes, 1, mutation.frequency)
     if(debug)print(is.mutated)
     new_chr <- chr
+    if(debug)print(class(new_chr))
     for(i in seq(1,nr_genes)){
       if(is.mutated[i]){
-        new_chr[i] <- switch(genes.class[[i]][1],
+        new_chr[[i]] <- switch(genes.class[[i]][1],
              integer        = sample(seq(genes.range[[i]][1], genes.range[[i]][2], 1),1)
             ,boolean        = sample(c(F,T),1)
             ,float          = sample(runif(1, genes.range[[i]][1], genes.range[[i]][2]),1)
             ,class          = sample(genes.range[[i]],1)
             ,boolean_vector = {
-              sample(c(F,T),size = 5, replace = T)
+              sample(c(F,T),size = genes.range[[i]], replace = T)
             }
          )
-        if(debug)print("New chr:")
-        if(debug)print(new_chr[i])
       }
     }
     if(debug)print(new_chr)
