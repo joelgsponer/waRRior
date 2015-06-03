@@ -1,6 +1,7 @@
 waRRior.machinelearning.geneticalgorithm.mutation   <- function(
    chr
   ,mutation.frequency = 0.01
+  ,mutation.frequency.boolean.vector = 0.1
   ,genes.class = list("integer")
   ,genes.range = list(c(0,100)) 
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
@@ -43,7 +44,11 @@ waRRior.machinelearning.geneticalgorithm.mutation   <- function(
             ,float          = sample(runif(1, genes.range[[i]][1], genes.range[[i]][2]),1)
             ,class          = sample(genes.range[[i]],1)
             ,boolean_vector = {
-              sample(c(F,T),size = genes.range[[i]], replace = T)
+              unlist(waRRior.machinelearning.geneticalgorithm.mutation(
+                chr[[i]]
+                ,mutation.frequency = mutation.frequency.boolean.vector
+                ,genes.class = list("boolean")
+              ))
             }
          )
       }
