@@ -7,7 +7,10 @@
         pred <- pred[,3]
         perf <- h2o.performance(pred, data[,response])
         return(perf@model$auc)
-      }, error = function(e){return(0)})
+      }, error = function(e){
+           print(e)
+           return(0)
+      })
     }
     
     h2o.varimp <- function(algo, model) {
