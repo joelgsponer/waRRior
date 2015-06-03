@@ -3,7 +3,7 @@
     h2o.get_auc <- function(model, data, response, debug = F) {
       tryCatch({
         pred <- h2o.predict(model, data)
-        if(debug)pring(head(pred))
+        if(debug)print(head(pred))
         pred <- pred[,3]
         perf <- h2o.performance(pred, data[,response])
         return(perf@model$auc)
