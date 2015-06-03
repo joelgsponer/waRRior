@@ -145,6 +145,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
          ,e = e
        ))
       }else{
+        if(debug)print(population)
         stop(e)
       }
      }
