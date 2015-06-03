@@ -1,8 +1,10 @@
  TOP_FEATURES = 5
     
-    h2o.get_auc <- function(model, data, response) {
+    h2o.get_auc <- function(model, data, response, debug = F) {
       tryCatch({
-        pred <- h2o.predict(model, data)[,3]
+        pred <- h2o.predict(model, data)
+        if(debug)pring(head(pred))
+        pred <- pred[,3]
         perf <- h2o.performance(pred, data[,response])
         return(perf@model$auc)
       }, error = function(e){return(0)})
