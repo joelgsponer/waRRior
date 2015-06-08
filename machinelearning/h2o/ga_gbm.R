@@ -2,6 +2,10 @@
 waRRior.machinelearning.h2o.ga_gbm <- function(
    response
   ,predictors
+  ,h2oServer
+  ,train_hex
+  ,valid_hex
+  ,test_hex
   ,feature.selection = T
   ,...
   ){
