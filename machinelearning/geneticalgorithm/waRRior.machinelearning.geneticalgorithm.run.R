@@ -59,7 +59,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       scores[scores == Inf | scores == -Inf] <- NA
       o <- order(scores)
       if(higher.score)o <- rev(order(scores))
-      best.individual <- population[[o[1]]
+      best.individual <- population[[o[1]]]
       waRRior.snippets.verbose(paste("best score:",scores[o[1]]), verbose_ = verbose)
       mating_pool <- waRRior.machinelearning.geneticalgorithm.mating(o)
 
