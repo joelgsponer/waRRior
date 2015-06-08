@@ -16,7 +16,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
   ,function.id = "waRRior.machinelearning.geneticalgorithm.run" #Use this to identfy the function in error (or success messages if applicable) messages.
   ,verbose = F #Turn messages on and off
   ,simpleReturn = F
-  ,debug = F #Turn debug messages on and off
+  ,debug = T #Turn debug messages on and off
   ,plot.logscale = F
   ,save.population = T
   ,save.population.path = NA
@@ -60,6 +60,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       o <- order(scores)
       if(higher.score)o <- rev(order(scores))
       best.individual <- population[[o[1]]]
+      if(debug)print(best.individual@score)
       waRRior.snippets.verbose(paste("best score:",scores[o[1]]), verbose_ = verbose)
       mating_pool <- waRRior.machinelearning.geneticalgorithm.mating(o)
 
