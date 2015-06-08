@@ -26,7 +26,7 @@ waRRior.machinelearning.geneticalgorithm.create_individual <- function(
 ){
   newIndividual <- new("waRRior.machinelearning.geneticalgorithm.individual")
   if(create.random.name){
-    name <- waRRior.snippets.create_random_string(2)
+    name <- waRRior.snippets.create_random_string(10)
   }
   newIndividual@name <- name
   newIndividual@chr <- chr
