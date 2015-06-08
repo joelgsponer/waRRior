@@ -56,6 +56,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     generation <- 1
     while(generation <= generation.maximum){
       waRRior.snippets.verbose(paste("generation:",generation), verbose_ = verbose)
+      waRRior.snippets.verbose(paste("population.size:",population.size), verbose_ = verbose)
       scores <- unlist(lapply(population, function(x){x@score}))
       scores[scores == Inf | scores == -Inf] <- NA
       o <- order(scores)
