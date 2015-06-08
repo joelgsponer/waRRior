@@ -9,7 +9,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
   ,population.size = 10
   ,mutation.frequency = 0.1
   ,generation.maximum = 1000
-  ,keep.best == T
+  ,keep.best = T
   ,higher.score = T
   ,plot.scores.history =  T
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
