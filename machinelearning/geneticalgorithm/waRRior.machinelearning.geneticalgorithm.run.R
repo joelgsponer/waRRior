@@ -7,7 +7,6 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
   ,genes.class = list("integer")
   ,genes.range = list(c(1,100))
   ,population.size = 10
-  ,population.save.path = NA
   ,mutation.frequency = 0.1
   ,generation.maximum = 1000
   ,keep.best = T #keep the best individual untouched
