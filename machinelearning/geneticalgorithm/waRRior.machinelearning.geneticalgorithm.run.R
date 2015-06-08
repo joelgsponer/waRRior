@@ -9,6 +9,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
   ,population.size = 10
   ,mutation.frequency = 0.1
   ,generation.maximum = 1000
+  ,keep.best == T
   ,higher.score = T
   ,plot.scores.history =  T
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
@@ -55,6 +56,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       scores <- unlist(lapply(population, function(x){x@score}))
       scores[scores == Inf | scores == -Inf] <- NA
       o <- order(scores)
+      best.individual <- population[[which(o == min(o))]]
       if(higher.score)o <- rev(order(scores))
       waRRior.snippets.verbose(paste("best score:",scores[o[1]]), verbose_ = verbose)
       mating_pool <- waRRior.machinelearning.geneticalgorithm.mating(o)
@@ -108,6 +110,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
         )
       )  
     }
+    if(keep.best) population[[1]] <- best.individual
     for(i in seq(1, population.size)){
       s <- evaluate.function(population[[i]], train.data,validation.data,test.data,...)
       population[[i]]@score <- s
