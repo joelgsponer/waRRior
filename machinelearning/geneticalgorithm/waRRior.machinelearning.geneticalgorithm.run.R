@@ -55,8 +55,8 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     #Loop
     generation <- 1
     while(generation <= generation.maximum){
-      waRRior.snippets.verbose(paste("generation:",generation), verbose_ = verbose)
-      waRRior.snippets.verbose(paste("population.size:",population.size), verbose_ = verbose)
+      waRRior.snippets.verbose(paste("generation:",generation), verbose_ = T)
+      waRRior.snippets.verbose(paste("population.size:",population.size), verbose_ = T)
       scores <- unlist(lapply(population, function(x){x@score}))
       scores[scores == Inf | scores == -Inf] <- NA
       o <- order(scores)
@@ -122,6 +122,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
       if(save.population) save(population, file = save.population.path)
       generation <- generation + 1
       population.size <- population.size + round(population.size * population.size.increase.fraction, 0)
+      if(population.size.increase.fraction > 0 & population.size < 10) population.size = population.size +1
       
     }
 
