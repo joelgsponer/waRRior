@@ -53,6 +53,7 @@ files.to.be.loaded.on.startup <- list(
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.mutation.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/geneticalgorithm/waRRior.machinelearning.geneticalgorithm.run.R"
   ##h2o
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/h2o/ga_gbm.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/h2o/h2o_helpers.R"
 )
 
