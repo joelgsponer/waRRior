@@ -72,7 +72,7 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
   )
   if(feature.selection)genes.range <- c(genes.range.predictors, genes.range)
 
-  waRRior.machinelearning.geneticalgorithm.run(
+  return <- waRRior.machinelearning.geneticalgorithm.run(
      chr.init = chr
     ,genes.class = genes.class
     ,genes.range = genes.range

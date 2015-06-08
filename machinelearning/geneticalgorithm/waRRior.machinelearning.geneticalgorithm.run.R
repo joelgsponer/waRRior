@@ -7,6 +7,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
   ,genes.class = list("integer")
   ,genes.range = list(c(1,100))
   ,population.size = 10
+  ,population.save.path = NA
   ,mutation.frequency = 0.1
   ,generation.maximum = 1000
   ,keep.best = T #keep the best individual untouched
@@ -15,10 +16,11 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
   ,is.silent = F #it T supresses raising of errors, istead return a list with error information.
   ,function.id = "waRRior.machinelearning.geneticalgorithm.run" #Use this to identfy the function in error (or success messages if applicable) messages.
   ,verbose = F #Turn messages on and off
-  ,simpleReturn = T
+  ,simpleReturn = F
   ,debug = F #Turn debug messages on and off
   ,plot.logscale = F
   ,save.population = T
+  ,save.population.path = NA
   ,...){
   tryCatch({
     t <- Sys.time() 
@@ -26,6 +28,7 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     
     #Initalization
     scores.history <- c()
+    if(is.na(save.population.path)) save.population.path <- paste("GA-",population.size,"-",Sys.Date(), ".Rdata", sep = "")
     population <- list()
     par(lwd = 1)
     waRRior.snippets.verbose("creating intial population", verbose_ = verbose)
@@ -110,12 +113,12 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
         )
       )  
     }
-    if(keep.best) population[[1]] <- best.individual
+    if(keep.best) old_population[[1]] <- best.individual
     for(i in seq(1, population.size)){
       s <- evaluate.function(population[[i]], train.data,validation.data,test.data,...)
       population[[i]]@score <- s
     }
-      if(save.population) save(population, file ="genetic.algorithm.population.Rdata")
+      if(save.population) save(population, file = save.population.path)
       generation <- generation + 1
     }
 
@@ -127,7 +130,8 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     #define response
     if(simpleReturn)return(population[o[1]])
     response <- list(
-       result <- population[o[1]]
+       population <- population[o[1]]
+      ,scores <- scores
       ,message <- paste(function.id, 'success')
       ,error = 0
       ,e = NULL
