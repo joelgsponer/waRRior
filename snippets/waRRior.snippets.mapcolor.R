@@ -1,6 +1,6 @@
-  require(plyr)
-  mapcolors <- function(x, j){
 
+  mapcolors <- function(x, j){
+    require(plyr)
     choosecolor <- function(x){
       tryCatch({
       if(x < 0) return(deletions.color)
