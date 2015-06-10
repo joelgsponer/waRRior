@@ -77,7 +77,7 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
    ,c(0,1)
   )
   if(feature.selection)genes.range <- c(genes.range.predictors, genes.range)
-  pop <- waRRior.machinelearning.geneticalgorithm.run(
+  GA <- waRRior.machinelearning.geneticalgorithm.run(
      chr.init = chr
     ,genes.class = genes.class
     ,genes.range = genes.range
@@ -85,6 +85,31 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
     ,validation.data = valid_hex
     ,test.data = test_hex
     ,evaluate.function = evaluate_gbm
+    ,simple.return = F
     ,...
-  ) 
+  )
+  #Return best model
+  if(feature.selection) predictors <- predictors_[as.logical(GA$best.individual@chr[seq(1,length(predictors_))])]
+  model <- h2o.gbm(
+       x = predictors
+      ,y = response
+      ,data = train_hex
+      ,distribution = GA$best.individual@chr$distribution
+      ,n.trees = as.numeric(GA$best.individual@chr$n.trees)
+      ,interaction.depth = as.numeric(GA$best.individual@chr$interaction.depth)
+      ,n.minobsinnode = as.numeric(GA$best.individual@chr$n.minobsinnode)
+      ,shrinkage = as.numeric(GA$best.individual@chr$shrinkage)
+      ,n.bins = as.numeric(GA$best.individual@chr$n.bins)
+      ,importance = F
+      #,nfolds = 2
+      ,validation = valid_hex
+      #,balance.classes = F
+      ,max.after.balance.size = as.numeric(GA$best.individual@chr$max.after.balance.size)
+    )
+    if(is.na(save.best.model.path)) save.best.model.path <- "best.model.gbm.Rdata"
+    if(save.model){ 
+      save(model, file = save.best.model.path)
+      waRRior.snippets.verbose(paste("model saved at", save.best.model.path))
+   }
+   return(model)
 }
