@@ -17,10 +17,11 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
     ,test_hex
     ,response_ = response
     ,predictors_ = predictors
+    ,feature.selection_ = feature.selection
   ){
     #Function code
     model <- h2o.gbm(
-       x = ifelse(feature.selection, predictors_[as.logical(object@chr[seq(1,length(predictors_))])], predictors_)
+       x = ifelse(feature.selection_, predictors_[as.logical(object@chr[seq(1,length(predictors_))])], predictors_)
       ,y = response_
       ,data = train_hex
       ,distribution = object@chr$distribution
