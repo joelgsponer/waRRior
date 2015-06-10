@@ -20,8 +20,9 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
     ,feature.selection_ = feature.selection
   ){
     #Function code
+    if(feature.selection_) predictors_ <-  predictors_[as.logical(object@chr[seq(1,length(predictors_))])]
     model <- h2o.gbm(
-       x = ifelse(feature.selection_, predictors_[as.logical(object@chr[seq(1,length(predictors_))])], predictors_)
+       x = predictors_
       ,y = response_
       ,data = train_hex
       ,distribution = object@chr$distribution
