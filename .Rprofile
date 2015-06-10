@@ -1,4 +1,4 @@
-#Laod waRRior
+#Load waRRior
  
 source_https <- function(url, ...) {
   # load package

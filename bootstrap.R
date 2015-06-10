@@ -4,7 +4,17 @@ cat("
 \n**********************************
 \n")
 
-files.to.be.loaded.on.startup <- list(
+source_https <- function(url, ...) {
+  # load package
+  require(RCurl)
+ 
+  # parse and evaluate each .R script
+  sapply(c(url, ...), function(u) {
+    eval(parse(text = getURL(u, followlocation = TRUE, cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))), envir = .GlobalEnv)
+  })
+}
+
+waRRior.files.to.be.loaded.on.startup <- list(
   #Libraries
    "https://raw.githubusercontent.com/joelgsponer/waRRior/master/libraries/waRRior.libraries.startup.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/libraries/waRRior.libraries.checkPkg.R"
@@ -58,29 +68,35 @@ files.to.be.loaded.on.startup <- list(
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/machinelearning/h2o/h2o_helpers.R"
 )
 
-source_https <- function(url, ...) {
-  # load package
-  require(RCurl)
- 
-  # parse and evaluate each .R script
-  sapply(c(url, ...), function(u) {
-    eval(parse(text = getURL(u, followlocation = TRUE, cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))), envir = .GlobalEnv)
-  })
+if(exists('waRRior.local.path')){
+  waRRior.files.to.be.loaded.on.startup <- gsub("https://raw.githubusercontent.com/joelgsponer/waRRior/master", waRRior.local.path, waRRior.files.to.be.loaded.on.startup)
+  waRRior.snippets.verbose("Loading files locally:", verbose_ = T)
+  for(f in waRRior.files.to.be.loaded.on.startup){
+    tryCatch({
+      source(f)
+      function.id <- unlist(strsplit(f,"/"))
+      function.id <- function.id[length(function.id)]
+      waRRior.snippets.verbose(paste("\t*",function.id), verbose_ = T)
+      },
+      error = function(e, f_ = f){
+       waRRior.snippets.verbose(sprintf("ERROR loading %s", f_))
+       print(e)
+       })
+  }  }else{
+  source_https("https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.verbose.R")
+  waRRior.snippets.verbose("Loading files:", verbose_ = T)
+  for(f in waRRior.files.to.be.loaded.on.startup){
+    tryCatch({
+      source_https(f)
+      function.id <- unlist(strsplit(f,"/"))
+      function.id <- function.id[length(function.id)]
+      waRRior.snippets.verbose(paste("\t*",function.id), verbose_ = T)
+      },
+      error = function(e, f_ = f){
+       waRRior.snippets.verbose(sprintf("ERROR loading %s", f_))
+       print(e)
+       })
+  }   
 }
-source_https("https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.verbose.R")
-waRRior.snippets.verbose("Loading files:", verbose_ = T)
-for(f in files.to.be.loaded.on.startup){
-  tryCatch({
-    source_https(f)
-    function.id <- unlist(strsplit(f,"/"))
-    function.id <- function.id[length(function.id)]
-    waRRior.snippets.verbose(paste("\t*",function.id), verbose_ = T)
-    },
-    error = function(e, f_ = f){
-     waRRior.snippets.verbose(sprintf("ERROR loading %s", f_))
-     print(e)
-     })
-}
-
 
 waRRior.snippets.verbose("ready!", verbose_ = T)
