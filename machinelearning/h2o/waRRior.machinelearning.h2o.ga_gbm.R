@@ -7,6 +7,8 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
   ,valid_hex
   ,test_hex
   ,feature.selection = T
+  ,save.best.model.path = NA
+  ,save.best.model = T
   ,...
   ){
 
@@ -107,7 +109,7 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
       ,max.after.balance.size = as.numeric(GA$best.individual@chr$max.after.balance.size)
     )
     if(is.na(save.best.model.path)) save.best.model.path <- "best.model.gbm.Rdata"
-    if(save.model){ 
+    if(save.best.model){ 
       save(model, file = save.best.model.path)
       waRRior.snippets.verbose(paste("model saved at", save.best.model.path))
    }
