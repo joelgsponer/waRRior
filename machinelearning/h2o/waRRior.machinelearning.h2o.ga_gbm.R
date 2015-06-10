@@ -77,8 +77,7 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
    ,c(0,1)
   )
   if(feature.selection)genes.range <- c(genes.range.predictors, genes.range)
-
-  return <- waRRior.machinelearning.geneticalgorithm.run(
+  pop <- waRRior.machinelearning.geneticalgorithm.run(
      chr.init = chr
     ,genes.class = genes.class
     ,genes.range = genes.range
@@ -87,5 +86,5 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
     ,test.data = test_hex
     ,evaluate.function = evaluate_gbm
     ,...
-  )  
+  ) 
 }
