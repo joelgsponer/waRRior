@@ -87,7 +87,7 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
     ,validation.data = valid_hex
     ,test.data = test_hex
     ,evaluate.function = evaluate_gbm
-    ,simple.return = F
+    ,simpleReturn = F
     ,...
   )
   #Return best model
