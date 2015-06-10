@@ -1,4 +1,4 @@
-waRRior.refresh <- function(verbose = T){
+waRRior.refresh <- function(development = F, verbose = T){
   waRRior.snippets.verbose('refreshing.', verbose_ = verbose)
   waRRior.snippets.verbose('cleaning up.', verbose_ = verbose)
   for(i in grep("waRRior", ls(),value = T)){
