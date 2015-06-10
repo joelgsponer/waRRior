@@ -9,6 +9,7 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
   ,feature.selection = T
   ,save.best.model.path = NA
   ,save.best.model = T
+  ,debug = F
   ,...
   ){
 
@@ -90,6 +91,7 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
     ,simpleReturn = F
     ,...
   )
+  if(debug)print(GA)
   #Return best model
   if(feature.selection) predictors <- predictors_[as.logical(GA$best.individual@chr[seq(1,length(predictors_))])]
   model <- h2o.gbm(
