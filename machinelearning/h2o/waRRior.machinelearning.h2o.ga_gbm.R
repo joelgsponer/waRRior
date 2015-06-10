@@ -93,17 +93,17 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
   )
   if(debug)print(GA)
   #Return best model
-  if(feature.selection) predictors <- predictors_[as.logical(GA$best.individual@chr[seq(1,length(predictors_))])]
+  if(feature.selection) predictors <- predictors_[as.logical(GA[[2]]@chr[seq(1,length(predictors_))])]
   model <- h2o.gbm(
        x = predictors
       ,y = response
       ,data = train_hex
-      ,distribution = GA$best.individual@chr$distribution
-      ,n.trees = as.numeric(GA$best.individual@chr$n.trees)
-      ,interaction.depth = as.numeric(GA$best.individual@chr$interaction.depth)
-      ,n.minobsinnode = as.numeric(GA$best.individual@chr$n.minobsinnode)
-      ,shrinkage = as.numeric(GA$best.individual@chr$shrinkage)
-      ,n.bins = as.numeric(GA$best.individual@chr$n.bins)
+      ,distribution = GA[[2]]@chr$distribution
+      ,n.trees = as.numeric(GA[[2]]@chr$n.trees)
+      ,interaction.depth = as.numeric(GA[[2]]@chr$interaction.depth)
+      ,n.minobsinnode = as.numeric(GA[[2]]@chr$n.minobsinnode)
+      ,shrinkage = as.numeric(GA[[2]]@chr$shrinkage)
+      ,n.bins = as.numeric(GA[[2]]@chr$n.bins)
       ,importance = F
       #,nfolds = 2
       ,validation = valid_hex
