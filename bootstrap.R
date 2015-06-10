@@ -69,6 +69,7 @@ waRRior.files.to.be.loaded.on.startup <- list(
 )
 
 if(exists('waRRior.local.path')){
+  source(paste(waRRior.local.path,"/snippets/waRRior.snippets.verbose.R", sep = ""))
   waRRior.files.to.be.loaded.on.startup <- gsub("https://raw.githubusercontent.com/joelgsponer/waRRior/master", waRRior.local.path, waRRior.files.to.be.loaded.on.startup)
   waRRior.snippets.verbose("Loading files locally:", verbose_ = T)
   for(f in waRRior.files.to.be.loaded.on.startup){
@@ -82,7 +83,8 @@ if(exists('waRRior.local.path')){
        waRRior.snippets.verbose(sprintf("ERROR loading %s", f_))
        print(e)
        })
-  }  }else{
+  }  
+}else{
   source_https("https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.verbose.R")
   waRRior.snippets.verbose("Loading files:", verbose_ = T)
   for(f in waRRior.files.to.be.loaded.on.startup){
