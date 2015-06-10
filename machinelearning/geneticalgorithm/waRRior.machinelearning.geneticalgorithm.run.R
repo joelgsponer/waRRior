@@ -135,10 +135,10 @@ waRRior.machinelearning.geneticalgorithm.run <- function(
     #define response
     if(simpleReturn)return(population[o[1]])
     response <- list(
-       population <- population[o[1]]
-      ,best.individual <- best.individual
-      ,scores <- scores
-      ,message <- paste(function.id, 'success')
+       population = population[o[1]]
+      ,best.individual = best.individual
+      ,scores = scores
+      ,message = paste(function.id, 'success')
       ,error = 0
       ,e = NULL
       ,time.elapsed = as.numeric(difftime(Sys.time(), t), units = "secs")
