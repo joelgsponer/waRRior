@@ -8,12 +8,13 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
   ,test_hex
   ,regression = F
   ,feature.selection = T
-  ,save.best.model.path = NA
+  ,save.best.model.path.R = NA
+  ,save.best.model.path.h2o = NA
   ,save.best.model = T
   ,debug = F
   ,...
 ){
-  
+  h2o.status.old <- h2o.ls(h2oServer)
   evaluate_gbm <- function(
     object
     ,train_hex
@@ -111,8 +112,12 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
   )
   if(is.na(save.best.model.path)) save.best.model.path <- "best.model.gbm.Rdata"
   if(save.best.model){ 
-    save(model, file = save.best.model.path)
+    save(model, file = save.best.model.path.R)
+    h2o.saveModel(model,save.best.model.path.h2o)
     waRRior.snippets.verbose(paste("model saved at", save.best.model.path))
   }
+  h2o.status.new <- h2o.ls(h2oServer)
+  h2o.to.rm <- h2o.status.new[!(h2o.status.new %in% c(h2o.status.old, model@key)]
+  h2o.rm(h2oServer, h2o.to.rm)
   return(model)
 }
