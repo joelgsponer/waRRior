@@ -7,10 +7,12 @@ waRRior.statistics.views.barplot <- function(
   ,color.fill = NA
   ,color.text = "red"
   ,color.border = "black"
+  ,size.text = 1.5
   ,is.statistical.test = T
   ,ylim = NULL
   ,digits = 1
   ,legend.text = NA
+  ,las = las
   ,verbose = F
   ,...
 ){
@@ -25,6 +27,7 @@ waRRior.statistics.views.barplot <- function(
      ,col = color.fill
      ,ylab = "%"
      ,border = color.border
+     ,las = las
    )
   for(i in seq(1, dim(tab)[2])){
 	  csum <- c(0,cumsum(tab[,i]))
@@ -36,7 +39,7 @@ waRRior.statistics.views.barplot <- function(
 	     if(verbose)print(mids)
 	     if(is.null(ylim) == F) mids[1] <-  (ylim[1] + csum[2]) / 2
 	     if(verbose)print(mids)
-	     text(bar[i], mids, ifelse(tab[,i] > threshold, paste(round(tab[,i],digits),"%"), NA), cex = 1.5, font = 2, col = color.text)  
+	     text(bar[i], mids, ifelse(tab[,i] > threshold, paste(round(tab[,i],digits),"%"), NA), cex = size.text, font = 2, col = color.text)  
      }
     if(is.null(ylim) == F){
 	         par(xpd = T)
