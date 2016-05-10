@@ -117,7 +117,7 @@ waRRior.machinelearning.h2o.ga_gbm <- function(
     waRRior.snippets.verbose(paste("model saved at", save.best.model.path))
   }
   h2o.status.new <- h2o.ls(h2oServer)
-  h2o.to.rm <- h2o.status.new[!(h2o.status.new %in% c(h2o.status.old, model@key)]
+  h2o.to.rm <- h2o.status.new[!(h2o.status.new %in% c(h2o.status.old, model@key))]
   h2o.rm(h2oServer, h2o.to.rm)
   return(model)
 }
