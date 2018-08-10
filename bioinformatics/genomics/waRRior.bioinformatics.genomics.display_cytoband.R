@@ -9,6 +9,7 @@ waRRior.bioinformatics.genomics.display_cytoband <- function(
   ,y.text = -4
   ,debug = F
   ,show.text = T
+  ,cex.text = 0.8
 ){
   df <- waRRior.github.read.data("https://raw.githubusercontent.com/joelgsponer/annotate-it/master/bioinformatics/genomics/cytobandshg19.txt",do.dplyr = F,  sep = " ")
   if(debug)print(df)
@@ -17,7 +18,7 @@ waRRior.bioinformatics.genomics.display_cytoband <- function(
   if(create.plot){
     plot(1,1, xlim = range(df[,c("start", "end")]), pch = NA, ylim = c(-5,5), ylab = NA, las = 2,xaxt = "n", yaxt = "n", xlab = NA, bty = "n")
   } 
-  if(show.text == T)text(apply(df[,c("start", "end")], 1, mean),c(y.text), df$band, las = 2, cex = 0.8,srt = 90 )
+  if(show.text == T)text(apply(df[,c("start", "end")], 1, mean),c(y.text), df$band, las = 2, cex = cex.text,srt = 90 )
   color.bands <- sapply(df$stain, FUN = function(x){waRRior.snippets.make_color_transparent(color.bands, alpha = x)})
   if(debug)print(color.bands)
   rect(
