@@ -7,7 +7,7 @@ cat("
 source_https <- function(url, ...) {
   # load package
   require(RCurl)
- 
+
   # parse and evaluate each .R script
   sapply(c(url, ...), function(u) {
     eval(parse(text = getURL(u, followlocation = TRUE, cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))), envir = .GlobalEnv)
@@ -46,6 +46,7 @@ waRRior.files.to.be.loaded.on.startup <- list(
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.close_all_graphic_devices.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.backup_file.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.verbose.R"
+  ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.debug.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.make_color_transparent.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.create_random_string.R"
   ,"https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.source_folder.R"
@@ -83,7 +84,7 @@ if(exists('waRRior.local.path')){
        waRRior.snippets.verbose(sprintf("ERROR loading %s", f_))
        print(e)
        })
-  }  
+  }
 }else{
   source_https("https://raw.githubusercontent.com/joelgsponer/waRRior/master/snippets/waRRior.snippets.verbose.R")
   waRRior.snippets.verbose("Loading files:", verbose_ = T)
@@ -98,7 +99,7 @@ if(exists('waRRior.local.path')){
        waRRior.snippets.verbose(sprintf("ERROR loading %s", f_))
        print(e)
        })
-  }   
+  }
 }
 
 waRRior.snippets.verbose("ready!", verbose_ = T)
